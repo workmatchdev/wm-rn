@@ -7,6 +7,7 @@ import Layout from "../../components/Layout/Layout";
 import { Formik } from 'formik';
 import useCreateJobs from "./hooks/useCreateJobs";
 import MultiSelect from 'react-native-multiple-select';
+import InputList from "../../components/InputList";
 
 const items = [{
     id: '92iijs7yta',
@@ -40,7 +41,7 @@ const items = [{
 
 const CreateJob = () => {
 
-    const { handleSubmit } = useCreateJobs();
+    const { handleSubmit, getSelectedKeyWords } = useCreateJobs();
 
     const [selectedItems, setSelectedItems] = useState([])
 
@@ -133,29 +134,12 @@ const CreateJob = () => {
                                         onChangeText={handleChange('description')}
                                         onBlur={handleBlur('description')}
                                     />
-
-
-                                    <MultiSelect
-                                        hideTags
-                                        items={items}
-                                        uniqueKey="id"
-                                        // ref={(component) => { this.multiSelect = component }}
-                                        onSelectedItemsChange={onSelectedItemsChange}
-                                        selectedItems={selectedItems}
-                                        selectText="Pick Items"
-                                        searchInputPlaceholderText="Search Items..."
-                                        onChangeInput={(text) => console.log(text)}
-                                        altFontFamily="ProximaNova-Light"
-                                        tagRemoveIconColor="#CCC"
-                                        tagBorderColor="#CCC"
-                                        tagTextColor="#CCC"
-                                        selectedItemTextColor="#CCC"
-                                        selectedItemIconColor="#CCC"
-                                        itemTextColor="#000"
-                                        displayKey="name"
-                                        searchInputStyle={{ color: '#CCC' }}
-                                        submitButtonColor="#CCC"
-                                        submitButtonText="Submit"
+                                    <Text style={styles.label}>Keywords</Text>
+                                    <InputList 
+                                        onChange={getSelectedKeyWords}
+                                        extraKeywords={[]}
+                                        keywords={[]}
+                                        selectedItems={[]}
                                     />
 
                                     <Button
