@@ -12,12 +12,46 @@ const useCreateJobs = (props) => {
     const { deleteJob, updateJob } = useStoreJobs()
     const navigation = useNavigation();
 
-    const [initialValues, setInitialValues] = useState(null)
+    const [selectedKeyWords, setSelectedKeyWords] = useState([]);
+    const [initialValues, setInitialValues] = useState(null);
+    const [selectedKeyWordsSaved, setSelectedKeyWordsSaved] = useState([])
+
+    const getSelectedKeyWords = (props) => {
+        const { items, selectedItems } = props;
+        const keyWords = items.map(item => {
+            if (item.name === 'KeyWords') {
+                const simpleKeywords = item.children.map(key => {
+                    if (selectedItems.includes(key.id)) {
+                        return key
+                    }
+                    return null
+                })
+                return {
+                    keywords: simpleKeywords.filter(item => item)
+                }
+            }
+            if (item.name === 'Keywords extras') {
+                const extraKeywords = item.children.map(key => {
+                    if (selectedItems.includes(key.id)) {
+                        return key
+                    }
+                    return null
+                })
+                return {
+                    extraKeywords: extraKeywords.filter(item => item)
+                }
+            }
+        })
+        setSelectedKeyWords(keyWords);
+    }
 
     useEffect(() => {
         const getJob = async () => {
             const response = await axios.get(`http://192.168.0.21:4000/api/jobs/getJob/${jobId}`);
             const data = response.data;
+            const savedKeyWords = response.data.keywords.map(word => word.id);
+            const savedExtraKeyWords = response.data.extraKeywords.map(word => word.id);
+            setSelectedKeyWordsSaved([...savedExtraKeyWords,...savedKeyWords])
             setInitialValues(data);
         }
         if (jobId) {
@@ -27,9 +61,13 @@ const useCreateJobs = (props) => {
 
     const handleSubmit = async (values) => {
         try {
+            const keywords = selectedKeyWords.filter(item => Object.keys(item)[0] === 'keywords')
+            const extraKeywords = selectedKeyWords.filter(item => Object.keys(item)[0] === 'extraKeywords')
             const body = {
                 ...values,
-                company: user._id
+                company: user._id,
+                keywords: keywords[0].keywords,
+                extraKeywords: extraKeywords[0].extraKeywords,
             };
             const response = await axios.post('http://192.168.0.21:4000/api/jobs/create', body);
             const data = response.data;
@@ -42,9 +80,13 @@ const useCreateJobs = (props) => {
 
     const handleSubmitUpdate = async (values) => {
         try {
+            const keywords = selectedKeyWords.filter(item => Object.keys(item)[0] === 'keywords')
+            const extraKeywords = selectedKeyWords.filter(item => Object.keys(item)[0] === 'extraKeywords')
             const body = {
                 ...values,
-                company: user._id
+                company: user._id,
+                keywords: keywords[0].keywords,
+                extraKeywords: extraKeywords[0].extraKeywords,
             };
             const response = await axios.put(`http://192.168.0.21:4000/api/jobs/update/${jobId}`, body);
             const newValues = response.data;
@@ -55,6 +97,7 @@ const useCreateJobs = (props) => {
             if (error?.response?.data?.msg) {
                 alert(error?.response?.data?.msg)
             } else {
+                console.log(error);
                 alert('Ha ocurrido un error')
             }
         }
@@ -69,11 +112,13 @@ const useCreateJobs = (props) => {
             alert('Ha ocurrido un error al eliminar el rol')
         }
     }
-    
+
     return {
         handleSubmit,
         handleSubmitUpdate,
         handleDeleteItem,
+        getSelectedKeyWords,
+        selectedKeyWordsSaved,
         initialValues
     };
 }

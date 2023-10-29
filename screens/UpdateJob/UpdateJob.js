@@ -11,7 +11,7 @@ const CreateJob = ({ route }) => {
 
     const { jobId } = route.params;
 
-    const { handleSubmitUpdate, initialValues } = useCreateJobs({
+    const { handleSubmitUpdate, initialValues, getSelectedKeyWords, selectedKeyWordsSaved } = useCreateJobs({
         jobId
     });
 
@@ -23,7 +23,7 @@ const CreateJob = ({ route }) => {
                         <View style={styles.principalTitle}>
                             <Text style={styles.pricipalTitleText}>Crea un nuevo puesto</Text>
                         </View>
-                        { initialValues ? <Formik
+                        {initialValues ? <Formik
                             initialValues={initialValues}
                             onSubmit={values => {
                                 handleSubmitUpdate(values)
@@ -99,7 +99,13 @@ const CreateJob = ({ route }) => {
                                         onChangeText={handleChange('description')}
                                         onBlur={handleBlur('description')}
                                     />
-                                    <InputList />
+                                    <Text style={styles.label}>Keywords</Text>
+                                    <InputList
+                                        selectedItems={selectedKeyWordsSaved}
+                                        onChange={getSelectedKeyWords}
+                                        extraKeywords={initialValues.extraKeywords || []}
+                                        keywords={initialValues.keywords || []}
+                                    />
                                     <Button
                                         style={styles.saveButton}
                                         textStyle={styles.saveButtonText}
@@ -108,7 +114,7 @@ const CreateJob = ({ route }) => {
                                     />
                                 </View>
                             )}
-                        </Formik>: <Text>Cargando...</Text>}
+                        </Formik> : <Text>Cargando...</Text>}
                     </View>
                 </View>
             </ScrollView>
