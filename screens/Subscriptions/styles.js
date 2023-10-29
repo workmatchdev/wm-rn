@@ -1,6 +1,10 @@
 import { StyleSheet } from "react-native";
+import colors from '../../src/assets/colors'
 
 export default StyleSheet.create({
+    scrollViewConatiner: {
+        marginBottom: 100
+    },
     generalContainer: {
         width: '100%',
         height: '100%',
@@ -19,7 +23,7 @@ export default StyleSheet.create({
         width: '100%',
         borderBottomWidth: 8,
         textAlign: 'left',
-        borderColor: '#F27649',
+        borderColor: colors.principalPink,
         backgroundColor: '#fff',
         paddingVertical: 10,
         paddingHorizontal: 8
@@ -28,7 +32,7 @@ export default StyleSheet.create({
         marginVertical: 0,
         borderBottomWidth: 2,
         paddingVertical: 10,
-        borderBottomColor: '#446FF2',
+        borderBottomColor: colors.secondarypalColor,
         borderBottomWidth: 2,
         width: '100%',
         fontFamily: 'Nunito-Medium',
@@ -54,7 +58,7 @@ export default StyleSheet.create({
         marginVertical: 12,
         paddingHorizontal: 10,
         borderRadius: 8,
-        backgroundColor: '#F27649',
+        backgroundColor: colors.principalColor,
         width: '100%',
         textAlign: 'center',
         display: 'flex',
@@ -82,7 +86,7 @@ export default StyleSheet.create({
         borderBottomWidth: 2,
         borderRadius: 5,
         backgroundColor: '#F0F0F2',
-        borderBottomColor: '#446FF2',
+        borderBottomColor: colors.secondarypalColor,
         width: '100%',
         display: 'flex',
         justifyContent: "flex-start",
@@ -97,7 +101,7 @@ export default StyleSheet.create({
         width: '100%',
         backgroundColor: '#F0F0F2',
         borderBottomWidth: 1,
-        borderColor: '#446FF2'
+        borderColor: colors.secondarypalColor
     },
     doubleInputsContainer: {
         display: 'flex',

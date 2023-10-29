@@ -1,13 +1,18 @@
 import BussinesProfile from './BussinesProfile';
 import UserProfile from './UserProfile';
+import useSession from '../../hooks/sessions/useSession';
 
 const Profile = () => {
-    return ( 
+    const { user } = useSession();
+    return (
         <>
-            <BussinesProfile />
-            {/* <UserProfile /> */}
+            {user.userType === "applicant" ? (
+                <UserProfile />
+            ) : (
+                <BussinesProfile />
+            )}
         </>
-     );
+    );
 }
- 
+
 export default Profile;

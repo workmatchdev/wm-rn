@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import colors from '../../src/assets/colors'
 
 export default StyleSheet.create({
     pricipalTitle: {
@@ -10,7 +11,7 @@ export default StyleSheet.create({
         width: '100%',
         borderBottomWidth: 8,
         textAlign: 'left',
-        borderColor: '#F27649',
+        borderColor: colors.principalPink,
         backgroundColor: '#fff',
         paddingVertical: 10,
         paddingHorizontal: 8
@@ -20,6 +21,7 @@ export default StyleSheet.create({
         justifyContent: 'flex-start',
         flexDirection: 'column',
         paddingHorizontal: 20,
+        marginBottom: 50
     },
     postulationCard: {
         borderRadius: 10,
@@ -31,18 +33,20 @@ export default StyleSheet.create({
     postulationContainer: {
         display: 'flex',
         justifyContent: 'flex-start',
-        flexDirection: 'row',
+        flexDirection: 'column',
         padding: 20
     },
     logoContainer: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        width: '25%',
+        width: '20%',
+        height: 40,
+        marginRight: 10
     },
     logo: {
         width: '100%',
-        height: 90,
+        height: '100%',
         resizeMode: 'contain'
     },
     dataContainer: {
@@ -54,7 +58,7 @@ export default StyleSheet.create({
         marginVertical: 12,
         paddingHorizontal: 10,
         borderRadius: 5,
-        backgroundColor: '#F27649',
+        backgroundColor: colors.principalColor,
         width: '100%',
         textAlign: 'center',
         display: 'flex',
@@ -98,5 +102,12 @@ export default StyleSheet.create({
         borderWidth: 1,
         borderColor: 'blue',
         textAlign: 'center'
+    },
+    companyContainer:{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        paddingVertical: 10
     }
 });

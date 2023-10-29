@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import colors from "../../src/assets/colors";
 
 export default StyleSheet.create({
     generalContainer: {
@@ -13,7 +14,7 @@ export default StyleSheet.create({
         paddingVertical: 10,
         borderRadius: 5,
         backgroundColor: '#FFF',
-        borderBottomColor: '#446FF2',
+        borderBottomColor: colors.secondarypalColor,
         borderBottomWidth: 2,
         width: '100%',
         fontFamily: 'Nunito-Medium',

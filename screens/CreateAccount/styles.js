@@ -1,22 +1,30 @@
 import { StyleSheet } from "react-native";
+import colors from '../../src/assets/colors'
 
 export default StyleSheet.create({
     generalContainer: {
         width: '100%',
-        height: '100%',
         display: 'flex',
         justifyContent: 'center',
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
+        marginTop: 20
+    },
+    logoContainer:{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 50
     },
     principalContainer: {
-        padding: 20
+        padding: 20,
+        marginBottom: 50
     },
     input: {
         marginVertical: 0,
         borderBottomWidth: 2,
         paddingVertical: 10,
         borderRadius: 5,
-        borderBottomColor: '#446FF2',
+        borderBottomColor: colors.secondarypalColor,
         borderBottomWidth: 2,
         width: '100%',
         fontFamily: 'Nunito-Medium',
@@ -40,7 +48,7 @@ export default StyleSheet.create({
         width: '100%',
         backgroundColor: '#F0F0F2',
         borderBottomWidth: 2,
-        borderColor: '#446FF2'
+        borderColor: colors.principalColor
     },
     formContainer: {
         paddingHorizontal: 20,
@@ -53,7 +61,7 @@ export default StyleSheet.create({
         marginVertical: 12,
         paddingHorizontal: 10,
         borderRadius: 8,
-        backgroundColor: '#F27649',
+        backgroundColor: colors.principalColor,
         width: '100%',
         textAlign: 'center',
         display: 'flex',
@@ -65,7 +73,7 @@ export default StyleSheet.create({
         marginVertical: 12,
         paddingHorizontal: 10,
         borderRadius: 8,
-        backgroundColor: '#F74B4B',
+        backgroundColor: colors.principalRed,
         width: '100%',
         textAlign: 'center',
         display: 'flex',
@@ -90,7 +98,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 20,
-        paddingVertical: 50,
+        paddingVertical: 20,
         backgroundColor: '#fff',
     },
     typeRegisterTitle: {
@@ -101,7 +109,7 @@ export default StyleSheet.create({
         textAlign: 'center',
         paddingVertical: 10,
         color: '#000',
-        borderColor: '#ACF216',
+        borderColor: colors.principalGreen,
         borderBottomColor: '#ccc',
         borderTopLeftRadius: 5,
         borderTopRightRadius: 5,
@@ -109,7 +117,7 @@ export default StyleSheet.create({
     buttonRegisterBussines: {
         display: 'flex',
         alignItems: 'center',
-        backgroundColor: '#446FF2',
+        backgroundColor: colors.principalColor,
         width: '100%',
         paddingVertical: 15,
         borderRadius: 99,
@@ -119,12 +127,11 @@ export default StyleSheet.create({
         color: '#fff',
         fontWeight: "600",
         fontSize: 15,
-        textTransform: 'uppercase'
     },
     buttonRegisterUser: {
         display: 'flex',
         alignItems: 'center',
-        backgroundColor: '#F27649',
+        backgroundColor: colors.secondarypalColor,
         width: '100%',
         paddingVertical: 15,
         borderRadius:99
@@ -133,7 +140,6 @@ export default StyleSheet.create({
         color: '#fff',
         fontWeight: "600",
         fontSize: 15,
-        textTransform: 'uppercase'
     },
     principalTitle: {
         marginTop: 5,
@@ -149,7 +155,7 @@ export default StyleSheet.create({
         width: '100%',
         borderBottomWidth: 8,
         textAlign: 'left',
-        borderColor: '#F27649',
+        borderColor: colors.principalPink,
         backgroundColor: '#fff',
         paddingVertical: 10,
         paddingHorizontal: 8
@@ -158,11 +164,33 @@ export default StyleSheet.create({
         marginTop: 10,
         display:'flex',
         alignItems: 'center',
-        backgroundColor:'#AAB7B8',
+        backgroundColor:colors.principalPink,
         width:'100%',
         padding: 10,
         borderBottomLeftRadius: 5,
         borderBottomRightRadius: 5,
-
+    },
+    textWhite: {
+        color: '#fff'
+    },
+    createAccountButtonText:{
+        fontSize: 17,
+        fontFamily: 'Nunito-Bold',
+        textDecorationLine: "underline",
+        textDecorationStyle: "double",
+        textDecorationColor: "#000",
+        color: colors.secondarypalColor,
+        marginTop: 10
+    },
+    askAccontText:{
+        fontSize: 18,
+        fontFamily: 'Nunito-Bold',
+        marginTop: 10
+    },
+    askAccontContinar:{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20
     }
 });

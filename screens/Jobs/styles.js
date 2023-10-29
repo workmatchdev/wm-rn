@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import colors from '../../src/assets/colors'
 
 export default StyleSheet.create({
     pricipalTitle: {
@@ -9,7 +10,7 @@ export default StyleSheet.create({
         width:'100%',
         borderBottomWidth: 8,
         textAlign:'left',
-        borderColor: '#F27649',
+        borderColor: colors.principalPink,
         backgroundColor:'#fff',
         paddingVertical: 10,
         paddingHorizontal: 8,
@@ -21,7 +22,7 @@ export default StyleSheet.create({
         flexDirection: 'column',
         paddingHorizontal: 15,
         paddingTop: 10,
-        paddingBottom: 0
+        paddingBottom: 60,
     },
     jobsCard: {
         borderRadius: 10,
@@ -56,7 +57,7 @@ export default StyleSheet.create({
         marginVertical: 12,
         paddingHorizontal: 10,
         borderRadius: 5,
-        backgroundColor: '#446ff2',
+        backgroundColor: colors.secondarypalColor,
         width: '100%',
         textAlign: 'center',
         display: 'flex',
@@ -98,14 +99,14 @@ export default StyleSheet.create({
     buttonEdit: {
         display: 'flex',
         alignItems:'center',
-        backgroundColor:'#F4D03F',
+        backgroundColor: colors.principalColor,
         padding:10,
         borderRadius: 5
     },
     buttonDelete: {
         display: 'flex',
         alignItems:'center',
-        backgroundColor:'#F74B4B',
+        backgroundColor:colors.principalRed,
         padding:10,
         borderRadius: 5
     },

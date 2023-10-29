@@ -8,7 +8,7 @@ const Subscriptions = () => {
     return (
         <Layout>
             <View style={styles.generalContainer}>
-                <ScrollView>
+                <ScrollView style={styles.scrollViewConatiner}>
                     <View style={styles.principalContainer}>
                         <View style={styles.formContainer}>
                             <Text style={styles.title}>Planes disponibles </Text>
@@ -112,6 +112,7 @@ const Subscriptions = () => {
                             </View>
                         </View>
                     </View>
+
                     <View style={styles.principalContainer}>
                         <View style={styles.formContainer}>
                             <Text style={styles.title}>Pagar subscripción</Text>

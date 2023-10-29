@@ -7,17 +7,21 @@ const Select = (props) => {
         label,
         selectStyles = {},
         labelStyles = {},
-        defaultButtonText = "--Selecciona"
+        defaultButtonText = "--Selecciona",
+        onChange,
+        value
     } = props;
+    
     return (
         <View>
             <Text style={labelStyles}>{label}</Text>
             <SelectDropdown
+                defaultValue={value}
                 defaultButtonText={defaultButtonText}
                 buttonStyle={selectStyles}
                 data={items}
                 onSelect={(selectedItem, index) => {
-                    console.log(selectedItem, index)
+                    onChange(selectedItem)
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                     // text represented after item is selected

@@ -1,8 +1,12 @@
 import { StyleSheet } from 'react-native';
+import colors from '../../src/assets/colors'
 
 export default StyleSheet.create({
     principalContainer: {
         padding: 20,
+        height: '100%'
+    },
+    scrollViewContainer: {
         height: '100%'
     },
     container: {
@@ -24,9 +28,18 @@ export default StyleSheet.create({
         marginRight: 10
     },
     title: {
-        fontSize: 22,
         fontFamily: 'Nunito-Bold',
-        paddingVertical: 8
+        fontSize: 25,
+        textAlign: 'center',
+        marginVertical: 10,
+        color: '#191010',
+        width: '100%',
+        borderBottomWidth: 8,
+        textAlign: 'left',
+        borderColor: colors.principalPink,
+        backgroundColor: '#fff',
+        paddingVertical: 10,
+        paddingHorizontal: 8
     },
     cargo: {
         fontSize: 18,
@@ -64,5 +77,13 @@ export default StyleSheet.create({
         fontSize: 18,
         fontFamily: 'Nunito-Regular',
         paddingVertical: 5
+    },
+    buttonContainer: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 25,
+        paddingVertical: 10
     }
 })

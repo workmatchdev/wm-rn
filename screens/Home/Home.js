@@ -1,10 +1,11 @@
 import { Text, View } from 'react-native';
+import Layout from '../../components/Layout/Layout';
+import Matchs from '../Matchs';
 
 const Home = () => {
     return (
-        <View>
-            <Text>Home Page</Text>
-        </View>
+        <Matchs>
+        </Matchs>
     );
 }
 

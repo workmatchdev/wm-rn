@@ -12,6 +12,9 @@ import Postulations from './screens/Postulations';
 import Profile from './screens/Profile';
 import Subscriptions from './screens/Subscriptions';
 import Vacancies from './screens/Vacancies';
+import Notifications from './screens/Notifications/';
+import Candidate from './screens/Candidate/Candidate';
+import UpdateJob from './screens/UpdateJob';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,53 +22,119 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-      <Stack.Screen
+        <Stack.Screen
           name="Login"
           component={LoginPage}
           options={{ headerShown: false }}
+          initialParams={{
+            seccionName: 'Login'
+          }}
+        />
+        <Stack.Screen
+          name="Candidate"
+          component={Candidate}
+          options={{ headerShown: false }}
+          initialParams={{
+            seccionName: 'Candidato'
+          }}
+        />
+        <Stack.Screen
+          name='Notifications'
+          component={Notifications}
+          options={{ headerShown: false }}
+          initialParams={{
+            seccionName: 'Notificaciones'
+          }}
         />
         <Stack.Screen
           name="Profile"
           component={Profile}
           options={{ headerShown: false }}
+          initialParams={{
+            seccionName: 'Perfil'
+          }}
         />
         <Stack.Screen
           name="MyPostulations"
           component={MyPostulations}
           options={{ headerShown: false }}
+          initialParams={{
+            seccionName: 'Mis postulaciones'
+          }}
         />
         <Stack.Screen
           name="CreateAccount"
           component={CreateAccount}
           options={{ headerShown: false }}
+          initialParams={{
+            seccionName: 'Crear cuenta'
+          }}
         />
         <Stack.Screen
           name="CreateJob"
           component={CreateJob}
           options={{ headerShown: false }}
+          initialParams={{
+            seccionName: 'Crear trabajo'
+          }}
         />
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{ title: 'Home Page' }}
+          options={{ headerShown: false }}
+          initialParams={{
+            seccionName: 'Inicio'
+          }}
         />
         <Stack.Screen
           name="Matchs"
           component={Matchs}
+          options={{ headerShown: false }}
+          initialParams={{
+            seccionName: 'Matchs'
+          }}
         />
         <Stack.Screen
           name="Postulations"
           component={Postulations}
+          options={{ headerShown: false }}
+          initialParams={{
+            seccionName: 'Postulantes'
+          }}
         />
         <Stack.Screen
           name="Subscriptions"
           component={Subscriptions}
+          options={{ headerShown: false }}
+          initialParams={{
+            seccionName: 'Suscripciones'
+          }}
         />
         <Stack.Screen
           name="Vacancies"
           component={Vacancies}
+          options={{ headerShown: false }}
+          initialParams={{
+            seccionName: 'Vacante'
+          }}
         />
-        <Stack.Screen name='Jobs' component={Jobs} />
+        <Stack.Screen
+          name='Jobs'
+          component={Jobs}
+          options={{ headerShown: false }}
+          initialParams={{
+            seccionName: 'Trabajos'
+          }}
+        />
+        <Stack.Screen
+          name='UpdateJob'
+          component={UpdateJob}
+          options={{ headerShown: false }}
+          initialParams={{
+            seccionName: 'Actualizar Trabajo'
+          }}
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

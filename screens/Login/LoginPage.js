@@ -1,101 +1,74 @@
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { View, Text, Image, TouchableHighlight } from 'react-native';
+import InputText from '../../components/InputText'
+import styles from './styles';
+import Button from '../../components/Button'
+import Layout from '../../components/Layout/Layout';
+import useLogin from '../../hooks/sessions/useLogin';
+import { Formik } from 'formik';
 
 const LoginPage = ({ navigation }) => {
+    const { handleLogin } = useLogin();
     return (
-        <View style={styles.container}>
-            <Text>
-                <View>
-                    <Button
-                        onPress={() =>
-                            navigation.navigate('Home')
-                        }
-                        color={'red'}
-                        title="Go to Home"
-                    />
-                    <Button
-                        onPress={() =>
-                            navigation.navigate('CreateAccount')
-                        }
-                        color={'red'}
-                        title="Go to CreateAccount"
-                    />
-                    <Button
-                        onPress={() =>
-                            navigation.navigate('CreateJob')
-                        }
-                        color={'red'}
-                        title="Go to CreateJob"
-                    />
-                    <Button
-                        onPress={() =>
-                            navigation.navigate('Jobs')
-                        }
-                        color={'red'}
-                        title="Go to Jobs"
-                    />
-                    <Button
-                        onPress={() =>
-                            navigation.navigate('Matchs')
-                        }
-                        color={'red'}
-                        title="Go to Matchs"
-                    />
-                    <Button
-                        onPress={() =>
-                            navigation.navigate('MyPostulations')
-                        }
-                        color={'red'}
-                        title="Go to MyPostulations"
-                    />
-                    <Button
-                        onPress={() =>
-                            navigation.navigate('Postulations')
-                        }
-                        color={'red'}
-                        title="Go to Postulations"
-                    />
-                    <Button
-                        onPress={() =>
-                            navigation.navigate('Profile')
-                        }
-                        color={'red'}
-                        title="Go to Profile"
-                    />
-                    <Button
-                        onPress={() =>
-                            navigation.navigate('Subscriptions')
-                        }
-                        color={'red'}
-                        title="Go to Subscriptions"
-                    />
-                    <Button
-                        onPress={() =>
-                            navigation.navigate('Vacancies')
-                        }
-                        color={'red'}
-                        title="Go to Vacancies"
-                    />
-                    <Button
-                        onPress={() =>
-                            navigation.navigate('Login')
-                        }
-                        color={'red'}
-                        title="Go to Login"
+        <Layout>
+            <View style={styles.generalContainer}>
+                <View style={styles.logoContainer}>
+                    <Image
+                        source={require('../../src/img/logo.png')}
+                        style={{ width: 100, height: 100 }}
                     />
                 </View>
-            </Text>
-        </View>
+                <View style={styles.principalContainer}>
+                    <Text style={styles.typeRegisterTitle}>Login</Text>
+                    <Formik
+                        initialValues={{
+                            password: '',
+                            email: ''
+                        }}
+                        onSubmit={values => {
+                            handleLogin(values)
+                        }}
+                    >
+                        {({ handleSubmit, handleChange, values }) => (
+                            <View style={styles.formContainer}>
+                                <InputText
+                                    label='Correo'
+                                    inputStyles={styles.input}
+                                    labelStyles={styles.label}
+                                    styles={styles.inputContainer}
+                                    onChangeText={handleChange('email')}
+                                />
+                                <InputText
+                                    label='Password'
+                                    inputStyles={styles.input}
+                                    labelStyles={styles.label}
+                                    styles={styles.inputContainer}
+                                    password
+                                    onChangeText={handleChange('password')}
+                                    value={values.password}
+                                />
+                                <Button
+                                    underlayColor="rgba(255,255,255,0)"
+                                    styles={styles.submitButton}
+                                    textStyle={styles.submitButtonText}
+                                    title='Iniciar sesión'
+                                    onPress={handleSubmit}
+                                />
+                                <View style={styles.askAccontContinar}>
+                                    <Text style={styles.askAccontText}>No tienes cuenta?</Text>
+                                    <Button
+                                        textStyle={styles.createAccountButtonText}
+                                        title='Crear cuenta'
+                                        onPress={() => navigation.navigate('CreateAccount')}
+                                        underlayColor="rgba(255,255,255,0)"
+                                    />
+                                </View>
+                            </View>
+                        )}
+                    </Formik>
+                </View>
+            </View>
+        </Layout>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
-
 
 export default LoginPage;

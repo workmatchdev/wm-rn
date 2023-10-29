@@ -1,25 +1,40 @@
 import { Text, View } from "react-native";
 import Button from "../../../components/Button/Button";
 import styles from "../styles";
+import { formatDate } from "../../../helpers/date";
+import useCreateJobs from "../../CreateJob/hooks/useCreateJobs";
+import { useNavigation } from "@react-navigation/native";
 
-const CardJobs = () => {
+const CardJobs = ({ data }) => {
+
+    const navigation = useNavigation();
+
+    const {handleDeleteItem} = useCreateJobs();
+
+    const date = formatDate(new Date(data.date))
+
     return (
         <View style={styles.jobsContainer}>
             <View style={styles.jobsCard}>
-                <Text style={styles.jobTitle}>Titulo de empleo</Text>
+                <Text style={styles.jobTitle}>{data.title}</Text>
                 <Text style={styles.ligthText}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc est nulla, porttitor sit amet tempor non, scelerisque in diam. In sit amet posuere ante. Nullam gravida elementum porta. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                    {data.description}
                 </Text>
                 <Text style={styles.semiboldText}>
-                    Mathces: <Text style={styles.ligthText}>5 / 10</Text>
+                    Mathces: <Text style={styles.ligthText}>{data.matchs} / {data.limitMatches}</Text>
                 </Text>
-                <Text style={styles.semiboldText}>Creado: 16/07/2023</Text>
+                <Text style={styles.semiboldText}>Creado: {date}</Text>
                 <View style={styles.buttonsContainer} >
                     <View style={styles.buttonEditContainer}>
                         <Button
                             title='Editar'
                             style={styles.buttonEdit}
                             textStyle={styles.buttonText}
+                            onPress={() => {
+                                navigation.navigate('UpdateJob',{
+                                    jobId: data._id
+                                })
+                            }}
                         />
                     </View>
                     <View style={styles.buttonEditContainer}>
@@ -27,6 +42,7 @@ const CardJobs = () => {
                             title='Eliminar'
                             style={styles.buttonDelete}
                             textStyle={styles.buttonText}
+                            onPress={() => handleDeleteItem(data._id)}
                         />
                     </View>
                 </View>
