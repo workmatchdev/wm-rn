@@ -18,7 +18,7 @@ const useApplicantsForm = () => {
 
     const handleSubmit = async (values) => {
         try {
-            const response = await axios.post('http://192.168.0.21:4000/api/applicants/create', values);
+            const response = await axios.post('https://work-match-server.vercel.app/api/applicants/create', values);
             const data = response.data;
             setUser(data.user)
             setToken(data.token)
@@ -76,7 +76,7 @@ const useApplicantsForm = () => {
                 profile
             }
 
-            const response = await axios.put(`http://192.168.0.21:4000/api/applicants/update/${id}`, data);
+            const response = await axios.put(`https://work-match-server.vercel.app/api/applicants/update/${id}`, data);
             const newValues = response.data;
             setUser(newValues.user)
             alert(newValues.msg)

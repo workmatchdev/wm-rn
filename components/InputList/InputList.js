@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 import { Message } from "../../src/assets/icons";
-import SectionedMultiSelect from "react-native-sectioned-multi-select";
+import SectionedMultiSelect from "../react-native-sectioned-multi-select"
 import Icon from "react-native-vector-icons/MaterialIcons";
 import useInputList from "./hooks/useInputList";
 import {
