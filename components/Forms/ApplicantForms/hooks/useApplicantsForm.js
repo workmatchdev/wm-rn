@@ -89,6 +89,20 @@ const useApplicantsForm = () => {
         }
     }
 
+    const handleUpdateSkills = async (skill) => {
+        try {        
+            const data = {skill}
+            const response = await axios.put(`https://work-match-server.vercel.app/api/applicants/update/${id}`, data);
+            return response.data;
+        } catch (error) {
+            if(error?.response?.data?.msg) {
+                alert(error?.response?.data?.msg)
+            } else {
+                alert('Ha ocurrido un error')
+            }
+        }
+    }
+
     const handleDeleteItem = async (id) => {
         try {
             await axios.delete(`/api/applicants/delete/${id}`);
@@ -102,6 +116,7 @@ const useApplicantsForm = () => {
         handleSubmit,
         handleSubmitUpdate,
         handleDeleteItem,
+        handleUpdateSkills,
         genders,
         initialValues
     };

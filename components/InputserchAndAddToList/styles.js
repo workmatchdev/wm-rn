@@ -2,15 +2,12 @@ import { StyleSheet } from "react-native";
 import colors from '../../src/assets/colors'
 
 export default StyleSheet.create({
-    generalContainer: {
-        display: 'flex',
-        justifyContent: 'center',
+    principalContainer: {
+        display: "flex",
         flexDirection: "column",
         flex: 1,
-        paddingBottom: 10
-    },
-    principalContainer: {
-        padding: 20,
+        paddingHorizontal: 20,
+        marginVertical: 10
     },
     title:{
         fontFamily: 'Nunito-Bold',
@@ -37,7 +34,7 @@ export default StyleSheet.create({
         backgroundColor: '#F0F0F2'
     },
     inputContainer: {
-        marginBottom: 20
+        marginBottom: 10
     },
     label: {
         marginBottom: 2,
@@ -48,7 +45,7 @@ export default StyleSheet.create({
     formContainer: {
         paddingHorizontal: 20,
         paddingVertical: 20,
-        backgroundColor:'#fff'
+        backgroundColor:'#fff',
     },
     gender: {
         height: 40,
@@ -72,7 +69,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    cancelButton: {
+    deleteButton: {
         height: 45,
         marginVertical: 12,
         paddingHorizontal: 10,
@@ -88,77 +85,16 @@ export default StyleSheet.create({
         color: '#FFF',
         fontSize: 18
     },
-    textArea: {
-        height: 160,
-        borderBottomWidth: 2,
-        borderRadius: 5,
-        backgroundColor: '#F0F0F2',
-        borderBottomColor: colors.secondarypalColor,
-        width: '100%',
-        display: 'flex',
-        justifyContent: "flex-start",
-        fontFamily: 'Nunito-Medium',
-        fontSize: 20
-    },
-    dropDown: {
-        height: 40,
-        padding: 2,
-        marginBottom: 12,
-        borderRadius: 5,
-        width: '100%',
-        backgroundColor: '#F0F0F2',
-        borderBottomWidth: 1,
-        borderColor: colors.secondarypalColor
-    },
-    doubleInputsContainer: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        flexDirection: 'row'
-    },
-    doubleContainer: {
-        marginBottom: 15
-    },
-    doubleContinerInput: {
-        flexBasis: '48%',
-    },
-    doubleLabel: {
-        marginBottom: 10,
-        color: '#B0B0B0',
-        fontSize: 17,
-        fontFamily: 'Nunito-Bold',
-    },
-    skillContainer: {
+    viewMore: {
         display: "flex",
-        justifyContent: "space-between",
+        justifyContent: "center",
         flexDirection: "row",
-        alignItems: "center",
-        padding: 5,
-        paddingHorizontal: 20,
-        backgroundColor:'#fff',
-        border: "1px solid #red"
+        padding: 10,
+        backgroundColor: colors.principalColor
     },
-    skilText: {
+    viewMoreText: {
+        color: "#fff",
+        fontFamily: 'Nunito-Bold',
         fontSize: 18,
-        paddingVertical: 5,
-        fontFamily: 'Nunito-Bold'
-    },
-    checkboxContainer:{
-        display: 'flex',
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: 5
-    },
-    deleteButton: {
-        height: 45,
-        marginVertical: 12,
-        paddingHorizontal: 10,
-        borderRadius: 8,
-        backgroundColor: '#F74B4B',
-        width: '100%',
-        textAlign: 'center',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
     },
 });
