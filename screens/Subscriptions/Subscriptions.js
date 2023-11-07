@@ -3,7 +3,7 @@ import InputText from '../../components/InputText'
 import Layout from '../../components/Layout'
 import Button from '../../components/Button/Button';
 import styles from './styles';
-import Stripe from '../../components/Stripe';
+import InAppBrowser from '../../components/InAppBrowser';
 
 const Subscriptions = () => {
     return (
@@ -151,7 +151,7 @@ const Subscriptions = () => {
                             />
                         </View>
                     </View>
-                    <Stripe />
+                    <InAppBrowser />
                 </ScrollView>
             </View>
         </Layout>
