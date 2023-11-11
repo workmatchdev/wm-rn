@@ -11,7 +11,8 @@ import {
     SearchIcon,
     MoneyIcon,
     XmarkIcon,
-    NotificationIcon
+    NotificationIcon,
+    MessageIcon
 } from '../../src/assets/icons';
 import useSideBar from './hooks/useSideBar';
 import { useNavigation } from '@react-navigation/native';
@@ -92,6 +93,18 @@ const SideBar = () => {
                 icon={<JobIcon width='30' height='30' fill='#fff' />}
                 onPress={() => changeSideBarStatus()}
             />}
+            <Item
+                route='Chats'
+                text={'Chats'}
+                icon={<MessageIcon width='30' height='30' fill='#fff' />}
+                onPress={() => changeSideBarStatus()}
+            />
+            <Item
+                route='Chat'
+                text={'Chat'}
+                icon={<MessageIcon width='30' height='30' fill='#fff' />}
+                onPress={() => changeSideBarStatus()}
+            />
             <Item
                 text='Cerrar Sesion'
                 icon={<LogOutIcon width='30' height='30' fill='#fff' />}

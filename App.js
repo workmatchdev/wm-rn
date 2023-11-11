@@ -15,6 +15,8 @@ import Vacancies from './screens/Vacancies';
 import Notifications from './screens/Notifications/';
 import Candidate from './screens/Candidate/Candidate';
 import UpdateJob from './screens/UpdateJob';
+import Chat from './components/ChatComponent/components/Chat';
+import ChatList from './components/ChatComponent/components/List';
 
 const Stack = createNativeStackNavigator();
 
@@ -134,7 +136,22 @@ export default function App() {
             seccionName: 'Actualizar Trabajo'
           }}
         />
-
+        <Stack.Screen
+          name='Chats'
+          component={ChatList}
+          options={{ headerShown: false }}
+          initialParams={{
+            seccionName: 'Chats'
+          }}
+        />
+        <Stack.Screen
+          name='Chat'
+          component={Chat}
+          options={{ headerShown: false }}
+          initialParams={{
+            seccionName: 'Chat'
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
