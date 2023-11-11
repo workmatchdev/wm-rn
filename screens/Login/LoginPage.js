@@ -5,9 +5,19 @@ import Button from '../../components/Button'
 import Layout from '../../components/Layout/Layout';
 import useLogin from '../../hooks/sessions/useLogin';
 import { Formik } from 'formik';
+import { useLayoutEffect } from 'react';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
-const LoginPage = ({ navigation }) => {
+const LoginPage = () => {
     const { handleLogin } = useLogin();
+
+    const navigation = useNavigation();
+    const route = useRoute();
+
+    useLayoutEffect(() => {
+        navigation.setOptions({ headerShown: false });
+    }, [navigation, route]);
+
     return (
         <Layout>
             <View style={styles.generalContainer}>
