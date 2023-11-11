@@ -1,0 +1,16 @@
+{
+    "name": "inappbrowserandroidbutton",
+    "version": "0.0.1",
+    "author": "Jose Almazan",
+    "private": true,
+    "scripts": {
+      "start": "node ./index.js"
+    },
+    "dependencies": {
+      "react-native-inappbrowser-reborn": "3.7.0"
+    },
+    "engines": {
+      "node": ">=16"
+    }
+  }
+  
