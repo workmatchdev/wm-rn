@@ -1,91 +1,80 @@
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Image } from 'react-native';
 import InputText from '../../components/InputText'
 import Layout from '../../components/Layout'
 import Button from '../../components/Button/Button';
 import styles from './styles';
+import Stripe from '../../components/Stripe';
+import Carrousel from '../../components/Carrousel';
+import useSuscriptions from './hooks/useSuscriptions';
+import Modal from '../../components/Modal';
+
+const benefitsName = {
+    "emails": "Notificaciones por email",
+    "chat": "Chat disponible",
+    "support": "Soporte prioritario",
+    "limitMatches": "Podras ver el numero de match en ofertas laborales",
+    "statusMatch": "Estado de match",
+    "profileReviewStatus": "Chequear si tu perfil fue revisado",
+    "email": "Notificaciones por email",
+    "limitMatchesOnJobs": "Numero de match en ofertas laborales",
+    "matchsStatus": "Estado de match",
+    "profileReviewtStatus": "Ver el estatus de tus ofertas laborarles"
+}
 
 const Subscriptions = () => {
+    const {
+        memberships,
+        calculateTotal,
+        handleSelectPlan,
+        selectedPlan,
+        hasActivePlan,
+        handleCancelSelectPlan
+    } = useSuscriptions()
+    const cardPlan = ({ item }) => {
+        const { name, benefits, disaccount, price } = item;
+        const total = calculateTotal(price, disaccount);
+        return (
+            <View style={styles.plan}>
+                <View>
+                    <Text style={styles.planName}>{name}</Text>
+                    <View>
+                        {benefits.map(benefit => {
+                            return <Text style={styles.featureAvailable}>- {benefitsName[benefit]}</Text>
+                        })}
+                    </View>
+                </View>
+                <Button
+                    textStyle={styles.submitButtonText}
+                    style={styles.submitButton}
+                    title={`$ ${total} MXN`}
+                    onPress={() => { handleSelectPlan({ ...item, total }) }}
+                />
+            </View>
+        );
+    };
+
     return (
         <Layout>
             <View style={styles.generalContainer}>
                 <ScrollView style={styles.scrollViewConatiner}>
-                    <View style={styles.principalContainer}>
-                        <View style={styles.formContainer}>
-                            <Text style={styles.title}>Planes disponibles </Text>
+                    {!hasActivePlan && (
+                        <View style={styles.principalContainer}>
                             <View style={styles.avaliblePlans}>
-                                <View style={styles.plan}>
-                                    <View>
-                                        <Text style={styles.planName}>Plan Anula</Text>
-                                        <Text style={styles.description}>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc est nulla, porttitor sit amet tempor non, scelerisque in diam. In sit amet posuere ante.
-                                        </Text>
-                                        <View>
-                                            <View>
-                                                <Text style={styles.featureAvailable}>Caracteristica 1</Text>
-                                                <Text style={styles.featureAvailable}>Caracteristica 2</Text>
-                                                <Text style={styles.featureAvailable}>Caracteristica 3</Text>
-                                                <Text style={styles.featureAvailable}>Caracteristica 4</Text>
-                                                <Text style={styles.featureAvailable}>Caracteristica 5</Text>
-                                            </View>
-                                        </View>
-                                        <Button
-                                            textStyle={styles.submitButtonText}
-                                            style={styles.submitButton}
-                                            title='$ 315.00 MNX'
-                                        />
-                                    </View>
+                                <Text style={styles.title}>Planes disponibles </Text>
+                                <View>
+                                    <Carrousel carouselItems={memberships} renderComponent={cardPlan} />
                                 </View>
-
-                                <View style={styles.plan}>
-                                    <View>
-                                        <Text style={styles.planName}>Plan Semestral</Text>
-                                        <Text style={styles.description}>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc est nulla, porttitor sit amet tempor non, scelerisque in diam. In sit amet posuere ante.
-                                        </Text>
-                                        <View>
-                                            <View>
-                                                <Text style={styles.featureAvailable}>Caracteristica 1</Text>
-                                                <Text style={styles.featureAvailable}>Caracteristica 2</Text>
-                                                <Text style={styles.featureAvailable}>Caracteristica 3</Text>
-                                                <Text style={styles.featureAvailable}>Caracteristica 4</Text>
-                                                <Text style={styles.featureAvailable}>Caracteristica 5</Text>
-                                            </View>
-                                        </View>
-                                        <Button
-                                            textStyle={styles.submitButtonText}
-                                            style={styles.submitButton}
-                                            title='$ 315.00 MNX'
-                                        />
-                                    </View>
-                                </View>
-
-                                <View style={styles.plan}>
-                                    <View>
-                                        <Text style={styles.planName}>Plan Mensual</Text>
-                                        <Text style={styles.description}>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc est nulla, porttitor sit amet tempor non, scelerisque in diam. In sit amet posuere ante.
-                                        </Text>
-                                        <View>
-                                            <View>
-                                                <Text style={styles.featureAvailable}>Caracteristica 1</Text>
-                                                <Text style={styles.featureAvailable}>Caracteristica 2</Text>
-                                                <Text style={styles.featureAvailable}>Caracteristica 3</Text>
-                                                <Text style={styles.featureAvailable}>Caracteristica 4</Text>
-                                                <Text style={styles.featureAvailable}>Caracteristica 5</Text>
-                                            </View>
-                                        </View>
-                                        <Button
-                                            textStyle={styles.submitButtonText}
-                                            style={styles.submitButton}
-                                            title='$ 315.00 MNX'
-                                        />
-                                    </View>
+                                <View style={styles.logoContainer}>
+                                    <Image
+                                        source={require('../../src/img/stripe.png')}
+                                        style={{ width: '50%', height: 50 }}
+                                    />
                                 </View>
                             </View>
                         </View>
-                    </View>
+                    )}
 
-                    <View style={styles.principalContainer}>
+                    {hasActivePlan && <View style={styles.principalContainer}>
                         <View style={styles.formContainer}>
                             <Text style={styles.title}>Subscripción activa </Text>
                             <View>
@@ -111,45 +100,48 @@ const Subscriptions = () => {
                                 />
                             </View>
                         </View>
-                    </View>
+                    </View>}
 
-                    <View style={styles.principalContainer}>
-                        <View style={styles.formContainer}>
-                            <Text style={styles.title}>Pagar subscripción</Text>
-                            <InputText
-                                styles={styles.inputContainer}
-                                inputStyles={styles.input}
-                                label='Numero de tarjeta'
-                                labelStyles={styles.label}
-                            />
-                            <View style={styles.doubleContainer}>
-                                {/* <Text style={styles.doubleLabel}>Numero de empleado</Text> */}
-                                <View style={styles.doubleInputsContainer}>
-                                    <InputText
-                                        label='Fecha de vencimiento'
-                                        styles={styles.doubleContinerInput}
-                                        inputStyles={styles.input}
-                                    />
-                                    <InputText
-                                        label='CVV'
-                                        styles={styles.doubleContinerInput}
-                                        inputStyles={styles.input}
-                                    />
+                    {selectedPlan && (
+                        <Modal
+                            isOpen={!!selectedPlan}
+                            style={styles.modalContainer}
+                        >
+                            <View style={styles.principalContainer}>
+                                <View style={styles.paymentContainer}>
+                                    <View>
+                                        <Text style={styles.title}>Pagar subscripción</Text>
+                                        <View
+                                            style={{
+                                                display:'flex',
+                                                flexDirection: 'row',
+                                                alignContent: 'center',
+                                                paddingHorizontal: 10
+                                            }}
+                                        >
+                                            <Text style={styles.selectedPlanName}>{selectedPlan.name} </Text>
+                                            <Text style={styles.selectedPlanName}>${selectedPlan.total} MXN</Text>
+                                        </View>
+                                        <View>
+                                            {selectedPlan.benefits.map(benefit => {
+                                                return <Text style={styles.featureAvailable}>- {benefitsName[benefit]}</Text>
+                                            })}
+                                        </View>
+                                    </View>
+                                    <View>
+                                        <Stripe />
+                                        <Button
+                                            onPress={handleCancelSelectPlan}
+                                            textStyle={styles.submitButtonText}
+                                            style={styles.cancelButton}
+                                            title='Cancelar'
+                                        />
+                                    </View>
                                 </View>
                             </View>
-                            <InputText
-                                styles={styles.inputContainer}
-                                inputStyles={styles.input}
-                                label='Facebook'
-                                labelStyles={styles.label}
-                            />
-                            <Button
-                                textStyle={styles.submitButtonText}
-                                style={styles.submitButton}
-                                title='Guardar'
-                            />
-                        </View>
-                    </View>
+                        </Modal>
+
+                    )}
                 </ScrollView>
             </View>
         </Layout>

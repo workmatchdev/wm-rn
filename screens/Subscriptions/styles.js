@@ -3,16 +3,26 @@ import colors from '../../src/assets/colors'
 
 export default StyleSheet.create({
     scrollViewConatiner: {
-        marginBottom: 100
+        flex: 1,
+        height: '100%',
     },
     generalContainer: {
+        flex: 1,
         width: '100%',
         height: '100%',
         display: 'flex',
         justifyContent: 'center',
     },
     principalContainer: {
+        flex: 1,
+        height: '100%',
         padding: 20
+    },
+    logoContainer:{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingVertical: 20
     },
     title: {
         fontFamily: 'Nunito-Bold',
@@ -51,7 +61,23 @@ export default StyleSheet.create({
     formContainer: {
         paddingHorizontal: 20,
         paddingVertical: 20,
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        height: '100%'
+    },
+    avaliblePlans: {
+        paddingHorizontal: 20,
+        paddingVertical: 20,
+        backgroundColor: '#fff',
+        flex: 1,
+    },
+    paymentContainer:{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        paddingHorizontal: 20,
+        paddingVertical: 20,
+        backgroundColor: '#fff',
+        height: '100%'
     },
     submitButton: {
         height: 45,
@@ -138,19 +164,17 @@ export default StyleSheet.create({
     },
 
     /** Avalible plans */
-
-    avaliblePlans: {
+    plan: {
         display: 'flex',
         justifyContent: 'space-between',
-        flexDirection: 'row',
-        overflow: 'hidden'
-    },
-    plan: {
+        flexDirection: 'column',
+        alignContent: 'flex-start',
         padding: 10,
-        width: '90%',
+        width: '100%',
         marginRight: '5%',
         borderRadius: 5,
-        backgroundColor: '#f2f2f2'
+        backgroundColor: '#f2f2f2',
+        height: '100%'
     },
     planName: {
         fontFamily: 'Nunito-Bold',
@@ -159,6 +183,12 @@ export default StyleSheet.create({
         marginBottom: 10,
         borderBottomWidth: 2,
         paddingBottom: 5
+    },
+    selectedPlanName: {
+        fontFamily: 'Nunito-Bold',
+        fontSize: 20,
+        color: '#000',
+        marginBottom: 10
     },
     featureAvailable: {
         fontFamily: 'Nunito-Medium',
@@ -172,6 +202,14 @@ export default StyleSheet.create({
         fontSize: 15,
         fontFamily: 'Nunito-Medium',
         padding: 10
+    },
+    modalContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: '100%',
+        backgroundColor: 'rgba(52, 52, 52, 0.8)',
+        paddingHorizontal: 10
     }
-
 });

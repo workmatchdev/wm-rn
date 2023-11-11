@@ -6,48 +6,11 @@ import Button from '../../components/Button'
 import Layout from "../../components/Layout/Layout";
 import { Formik } from 'formik';
 import useCreateJobs from "./hooks/useCreateJobs";
-import MultiSelect from 'react-native-multiple-select';
 import InputList from "../../components/InputList";
-
-const items = [{
-    id: '92iijs7yta',
-    name: 'Ondo'
-}, {
-    id: 'a0s0a8ssbsd',
-    name: 'Ogun'
-}, {
-    id: '16hbajsabsd',
-    name: 'Calabar'
-}, {
-    id: 'nahs75a5sg',
-    name: 'Lagos'
-}, {
-    id: '667atsas',
-    name: 'Maiduguri'
-}, {
-    id: 'hsyasajs',
-    name: 'Anambra'
-}, {
-    id: 'djsjudksjd',
-    name: 'Benue'
-}, {
-    id: 'sdhyaysdj',
-    name: 'Kaduna'
-}, {
-    id: 'suudydjsjd',
-    name: 'Abuja'
-}
-];
 
 const CreateJob = () => {
 
     const { handleSubmit, getSelectedKeyWords } = useCreateJobs();
-
-    const [selectedItems, setSelectedItems] = useState([])
-
-    const onSelectedItemsChange = selectedItems => {
-        setSelectedItems(selectedItems);
-    };
 
     return (
         <Layout>
