@@ -43,7 +43,7 @@ const useChatList = () => {
             try {
                 if (!user) return null
                 setLoading(true);
-                const response = await axios.get(`http://192.168.134.1:4000/api/chats/getChats/${user._id}`);
+                const response = await axios.get(`https://work-match-server.vercel.app/api/chats/getChats/${user._id}`);
                 const data = response.data;
                 setChats(data.data)
                 setLoading(false);
@@ -57,7 +57,7 @@ const useChatList = () => {
 
     const handleUpdateMessageStatus = async (chatId) => {
         try {
-            const query = await axios.get(`http://192.168.134.1:4000/api/chats/updateMessageStatus/${chatId}/${user._id}`)
+            const query = await axios.get(`https://work-match-server.vercel.app/api/chats/updateMessageStatus/${chatId}/${user._id}`)
             return query
         } catch (error) {
             console.log('error');

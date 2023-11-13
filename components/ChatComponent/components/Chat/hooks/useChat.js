@@ -27,7 +27,7 @@ const useChat = () => {
     useEffect(() => {
         const getChats = async () => {
             try {
-                const response = await axios.get(`http://192.168.134.1:4000/api/chats/getMessages/${router.params.chatId}`);
+                const response = await axios.get(`https://work-match-server.vercel.app/api/chats/getMessages/${router.params.chatId}`);
                 const data = response.data;
                 setMessages(data.data)
                 setLoading(false);
@@ -53,7 +53,7 @@ const useChat = () => {
                 "sender": user._id
             }
 
-            const response = await axios.post('http://192.168.134.1:4000/api/chats/sendMessage', newMessage);
+            const response = await axios.post('https://work-match-server.vercel.app/api/chats/sendMessage', newMessage);
             setMessages([...messages, response.data.data])
         } catch (error) {
             alert('Ha ocurrido un error')
