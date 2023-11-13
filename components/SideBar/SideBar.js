@@ -100,12 +100,6 @@ const SideBar = () => {
                 onPress={() => changeSideBarStatus()}
             />
             <Item
-                route='Chat'
-                text={'Chat'}
-                icon={<MessageIcon width='30' height='30' fill='#fff' />}
-                onPress={() => changeSideBarStatus()}
-            />
-            <Item
                 text='Cerrar Sesion'
                 icon={<LogOutIcon width='30' height='30' fill='#fff' />}
                 onPress={() => handleLogout()}

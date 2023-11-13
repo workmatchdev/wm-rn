@@ -58,11 +58,30 @@ export default StyleSheet.create({
         display: 'flex',
         justifyContent: 'flex-start',
         flexDirection: 'column',
-        position: 'relative'
     },
-    messageContainer:{
+    messageContainerUser:{
+        display: 'flex',
+        justifyContent: 'flex-end',
+        flexDirection: 'row',
         padding: 10,
-        maxWidth: '100%',
+    },
+    messageContainerSender:{
+        display: 'flex',
+        justifyContent: 'flex-start',
+        flexDirection: 'row',
+        padding: 10,
+    },
+    messageContentUser: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-end',
+    },
+    messageContentSender: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
     },
     messageUser:{
         backgroundColor: colors.principalPink,
@@ -70,7 +89,8 @@ export default StyleSheet.create({
         borderRadius: 10,
         color: '#fff',
         fontFamily: 'Nunito-SemiBold',
-        marginRight: '10%'
+        maxWidth: '90%',
+        minWidth: 70
     },
     messageSender:{
         backgroundColor: colors.principalColor,
@@ -78,13 +98,13 @@ export default StyleSheet.create({
         borderRadius: 10,
         color: '#fff',
         fontFamily: 'Nunito-SemiBold',
-        marginLeft: '10%'
+        maxWidth: '90%',
+        minWidth: 70
     },
     time:{
         fontSize: 13,
     },
     timeSender:{
         fontSize: 13,
-        left: '87%'
     }
 })
