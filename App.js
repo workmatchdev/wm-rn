@@ -18,12 +18,25 @@ import UpdateJob from './screens/UpdateJob';
 import Chat from './components/ChatComponent/components/Chat';
 import ChatList from './components/ChatComponent/components/List';
 
+import colors from './src/assets/colors';
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: colors.principalColor,
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontFamily: 'Nunito-Bold',
+            fontSize: 20
+          }
+        }}
+      >
         <Stack.Screen
           name="Login"
           component={LoginPage}
@@ -83,7 +96,11 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{ headerShown: false }}
+          options={{ 
+            headerShown: true,
+            headerBackVisible: false,
+            title: 'Inicio'
+          }}
           initialParams={{
             seccionName: 'Inicio'
           }}

@@ -208,7 +208,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',
-        height: '100%',
+        flex: 1,
         backgroundColor: 'rgba(52, 52, 52, 0.8)',
         paddingHorizontal: 10
     }

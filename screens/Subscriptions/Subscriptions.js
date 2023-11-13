@@ -7,6 +7,8 @@ import Stripe from '../../components/Stripe';
 import Carrousel from '../../components/Carrousel';
 import useSuscriptions from './hooks/useSuscriptions';
 import Modal from '../../components/Modal';
+import { useHeaderHeight } from '@react-navigation/elements'
+
 
 const benefitsName = {
     "emails": "Notificaciones por email",
@@ -30,6 +32,9 @@ const Subscriptions = () => {
         hasActivePlan,
         handleCancelSelectPlan
     } = useSuscriptions()
+
+    const headerHeight = useHeaderHeight()
+
     const cardPlan = ({ item }) => {
         const { name, benefits, disaccount, price } = item;
         const total = calculateTotal(price, disaccount);
@@ -105,7 +110,7 @@ const Subscriptions = () => {
                     {selectedPlan && (
                         <Modal
                             isOpen={!!selectedPlan}
-                            style={styles.modalContainer}
+                            style={{...styles.modalContainer, paddingTop: headerHeight}}
                         >
                             <View style={styles.principalContainer}>
                                 <View style={styles.paymentContainer}>
