@@ -17,7 +17,7 @@ const Chat = () => {
         loading,
         error
     } = useChat();
-    
+
     const scrollViewRef = useRef();
     return (
         <Layout>
@@ -69,7 +69,7 @@ const Chat = () => {
                                                         <Text style={styles.messageSender}>
                                                             {content}
                                                         </Text>
-                                                        <Text style={styles.timeSender}>4:15 pm</Text>
+                                                        <Text style={styles.timeSender}>{dateString} {timeString}</Text>
                                                     </View>
                                                 </View>
                                             )
@@ -93,13 +93,13 @@ const Chat = () => {
                 {({ handleChange, handleSubmit, values }) => {
                     return (
                         <View style={styles.inputContainer}>
-                            <View style={styles.input}>
-                                <InputText
-                                    onChangeText={handleChange('message')}
-                                    value={values.message}
-                                    placeholder='Mensaje'
-                                />
-                            </View>
+                            <InputText
+                                styles={styles.input}
+                                inputStyles={styles.inputStyles}
+                                onChangeText={handleChange('message')}
+                                value={values.message}
+                                placeholder='Mensaje'
+                            />
                             <TouchableHighlight
                                 onPress={handleSubmit}
                                 style={styles.sendButtonContainer}

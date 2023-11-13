@@ -21,57 +21,58 @@ const CreateAccount = ({ navigation }) => {
     } = talonProps;
     if (visibleForm) return <FormAccount navigation={navigation} handleShowForm={handleShowForm} isBussines={isBussines} />
     return (
-        <Layout>
-            <View style={styles.logoContainer}>
-                <Image
-                    source={require('../../src/img/logo.png')}
-                    style={{ width: 100, height: 100 }}
-                />
-            </View>
-            <View style={styles.generalContainer}>
-                <View style={styles.modalOptions}>
-                    <Text style={styles.typeRegisterTitle}>Que buscas?</Text>
-                    <View style={styles.typeRegisterContainer}>
-                        <TouchableHighlight
-                            onPress={() => {
-                                handleShowForm();
-                                seIisBussines(true)
-                            }}
-                            style={styles.buttonRegisterBussines}>
-                            <View>
-                                <Text style={styles.buttonRegisterBussinesText}>Quiero encontrar talentos</Text>
-                            </View>
-                        </TouchableHighlight>
-                        <TouchableHighlight
-                            onPress={() => {
-                                handleShowForm();
-                                seIisBussines(false)
-                            }}
-                            style={styles.buttonRegisterUser}>
-                            <View>
-                                <Text style={styles.buttonRegisterUserText}>Busco trabajo</Text>
-                            </View>
-                        </TouchableHighlight>
-                        <View style={styles.askAccontContinar}>
-                            <Text style={styles.askAccontText}>No tienes cuenta?</Text>
-                            <Button
-                                textStyle={styles.createAccountButtonText}
-                                title='Iniciar Sesion'
+        <View style={{ flex: 1, display: 'flex', justifyContent: 'center' }} >
+            <View>
+                <View style={styles.logoContainer}>
+                    <Image
+                        source={require('../../src/img/logo.png')}
+                        style={{ width: 100, height: 100 }}
+                    />
+                </View>
+                <View style={styles.generalContainer}>
+                    <View style={styles.modalOptions}>
+                        <Text style={styles.typeRegisterTitle}>Que buscas?</Text>
+                        <View style={styles.typeRegisterContainer}>
+                            <TouchableHighlight
                                 onPress={() => {
-                                    navigation.navigate('Login')
+                                    handleShowForm();
+                                    seIisBussines(true)
                                 }}
-                                underlayColor="rgba(255,255,255,0)"
-                            />
+                                style={styles.buttonRegisterBussines}>
+                                <View>
+                                    <Text style={styles.buttonRegisterBussinesText}>Quiero encontrar talentos</Text>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight
+                                onPress={() => {
+                                    handleShowForm();
+                                    seIisBussines(false)
+                                }}
+                                style={styles.buttonRegisterUser}>
+                                <View>
+                                    <Text style={styles.buttonRegisterUserText}>Busco trabajo</Text>
+                                </View>
+                            </TouchableHighlight>
+                            <View style={styles.askAccontContinar}>
+                                <Text style={styles.askAccontText}>No tienes cuenta?</Text>
+                                <Button
+                                    textStyle={styles.createAccountButtonText}
+                                    title='Iniciar Sesion'
+                                    onPress={() => {
+                                        navigation.navigate('Login')
+                                    }}
+                                    underlayColor="rgba(255,255,255,0)"
+                                />
+                            </View>
                         </View>
-                    </View>
-                    <View style={styles.copyContainer}>
-                        <Text style={styles.textWhite}>Terminos y condiciones</Text>
-                        <Text style={styles.textWhite}>Todos los derechos reservados &copy;</Text>
+                        <View style={styles.copyContainer}>
+                            <Text style={styles.textWhite}>Terminos y condiciones</Text>
+                            <Text style={styles.textWhite}>Todos los derechos reservados &copy;</Text>
+                        </View>
                     </View>
                 </View>
             </View>
-        </Layout>
-
+        </View>
     );
 }
 

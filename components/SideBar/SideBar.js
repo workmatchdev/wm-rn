@@ -17,6 +17,7 @@ import {
 import useSideBar from './hooks/useSideBar';
 import { useNavigation } from '@react-navigation/native';
 import useSession from '../../hooks/sessions/useSession';
+import colors from '../../src/assets/colors';
 
 const SideBar = () => {
 
@@ -96,7 +97,7 @@ const SideBar = () => {
             <Item
                 route='Chats'
                 text={'Chats'}
-                icon={<MessageIcon width='30' height='30' fill='#fff' />}
+                icon={<MessageIcon width='30' height='30' fill='#fff' stroke={colors.principalColor} />}
                 onPress={() => changeSideBarStatus()}
             />
             <Item

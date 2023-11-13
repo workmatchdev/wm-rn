@@ -13,7 +13,6 @@ export default StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 50
     },
     principalContainer: {
         padding: 20,

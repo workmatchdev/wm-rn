@@ -51,9 +51,9 @@ export default StyleSheet.create({
         position: 'absolute'
     },
     newMessageText: {
-        textAlign: 'center',
         fontFamily: 'Nunito-Semibold',
-        fontSize: 18
+        fontSize: 16,
+        maxWidth: 200
     },
     conuterText: {
         color: "#fff",

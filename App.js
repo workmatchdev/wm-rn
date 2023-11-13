@@ -19,10 +19,21 @@ import Chat from './components/ChatComponent/components/Chat';
 import ChatList from './components/ChatComponent/components/List';
 
 import colors from './src/assets/colors';
+import RigthButtons from './components/NavigationBar/components/rigthButtons';
+import LeftButtons from './components/NavigationBar/components/leftButton';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
+  const options = {
+    headerShown: true,
+    headerBackVisible: false,
+    title: 'Inicio',
+    headerRight: () => <RigthButtons />,
+    headerLeft: () => <LeftButtons />
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -48,7 +59,7 @@ export default function App() {
         <Stack.Screen
           name="Candidate"
           component={Candidate}
-          options={{ headerShown: false }}
+          options={options}
           initialParams={{
             seccionName: 'Candidato'
           }}
@@ -56,7 +67,7 @@ export default function App() {
         <Stack.Screen
           name='Notifications'
           component={Notifications}
-          options={{ headerShown: false }}
+          options={options}
           initialParams={{
             seccionName: 'Notificaciones'
           }}
@@ -64,7 +75,7 @@ export default function App() {
         <Stack.Screen
           name="Profile"
           component={Profile}
-          options={{ headerShown: false }}
+          options={options}
           initialParams={{
             seccionName: 'Perfil'
           }}
@@ -72,7 +83,7 @@ export default function App() {
         <Stack.Screen
           name="MyPostulations"
           component={MyPostulations}
-          options={{ headerShown: false }}
+          options={options}
           initialParams={{
             seccionName: 'Mis postulaciones'
           }}
@@ -88,7 +99,7 @@ export default function App() {
         <Stack.Screen
           name="CreateJob"
           component={CreateJob}
-          options={{ headerShown: false }}
+          options={options}
           initialParams={{
             seccionName: 'Crear trabajo'
           }}
@@ -96,10 +107,12 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{ 
+          options={{
             headerShown: true,
             headerBackVisible: false,
-            title: 'Inicio'
+            title: 'Inicio',
+            headerRight: () => <RigthButtons />,
+            headerLeft: () => <LeftButtons />
           }}
           initialParams={{
             seccionName: 'Inicio'
@@ -108,7 +121,7 @@ export default function App() {
         <Stack.Screen
           name="Matchs"
           component={Matchs}
-          options={{ headerShown: false }}
+          options={options}
           initialParams={{
             seccionName: 'Matchs'
           }}
@@ -116,7 +129,7 @@ export default function App() {
         <Stack.Screen
           name="Postulations"
           component={Postulations}
-          options={{ headerShown: false }}
+          options={options}
           initialParams={{
             seccionName: 'Postulantes'
           }}
@@ -124,7 +137,7 @@ export default function App() {
         <Stack.Screen
           name="Subscriptions"
           component={Subscriptions}
-          options={{ headerShown: false }}
+          options={options}
           initialParams={{
             seccionName: 'Suscripciones'
           }}
@@ -132,7 +145,7 @@ export default function App() {
         <Stack.Screen
           name="Vacancies"
           component={Vacancies}
-          options={{ headerShown: false }}
+          options={options}
           initialParams={{
             seccionName: 'Vacante'
           }}
@@ -140,7 +153,7 @@ export default function App() {
         <Stack.Screen
           name='Jobs'
           component={Jobs}
-          options={{ headerShown: false }}
+          options={options}
           initialParams={{
             seccionName: 'Trabajos'
           }}
@@ -148,7 +161,7 @@ export default function App() {
         <Stack.Screen
           name='UpdateJob'
           component={UpdateJob}
-          options={{ headerShown: false }}
+          options={options}
           initialParams={{
             seccionName: 'Actualizar Trabajo'
           }}
@@ -156,7 +169,7 @@ export default function App() {
         <Stack.Screen
           name='Chats'
           component={ChatList}
-          options={{ headerShown: false }}
+          options={options}
           initialParams={{
             seccionName: 'Chats'
           }}
@@ -164,7 +177,7 @@ export default function App() {
         <Stack.Screen
           name='Chat'
           component={Chat}
-          options={{ headerShown: false }}
+          options={options}
           initialParams={{
             seccionName: 'Chat'
           }}
