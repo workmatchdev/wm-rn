@@ -13,7 +13,7 @@ export default StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
     },
-    principalcontainer:{
+    principalcontainer: {
         padding: 10
     },
     listItem: {
@@ -24,7 +24,7 @@ export default StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: colors.principalColor,
     },
-    imageContainer:{
+    imageContainer: {
         overflow: 'hidden',
         borderRadius: 10
     },
@@ -33,13 +33,13 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         flexDirection: 'row',
     },
-    column1Text:{
+    column1Text: {
         paddingHorizontal: 10
     },
     info: {
         position: 'relative'
     },
-    newMessage:{
+    newMessage: {
         display: 'flex',
         justifyContent: 'center',
         backgroundColor: colors.principalColor,
@@ -50,9 +50,21 @@ export default StyleSheet.create({
         left: '65%',
         position: 'absolute'
     },
-    newMessageText:{
+    newMessageText: {
+        textAlign: 'center',
+        fontFamily: 'Nunito-Semibold',
+        fontSize: 18
+    },
+    conuterText: {
         color: "#fff",
         textAlign: 'center',
+        fontFamily: 'Nunito-Bold',
+        fontSize: 18
+    },
+    name: {
+        color: "#000",
+        fontSize: 18,
         fontFamily: 'Nunito-Bold'
-    }
+    },
+
 })

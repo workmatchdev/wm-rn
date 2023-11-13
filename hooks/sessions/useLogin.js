@@ -24,7 +24,6 @@ const useLogin = () => {
     try {
       const response = await axios.post('https://work-match-server.vercel.app/api/auth/user/auth/app', values);
       const sessionData = response.data;
-      console.log(sessionData)
       setUser(sessionData.usuario);
       setToken(sessionData.token);      
       router.navigate('Home')
