@@ -15,14 +15,15 @@ const Chat = () => {
         handleSubmit,
         messages,
         loading,
-        error
+        error,
+        senderName
     } = useChat();
 
     const scrollViewRef = useRef();
     return (
         <Layout>
             <View>
-                <Text style={styles.chatUser}>Jose Almazan</Text>
+                <Text style={styles.chatUser}>{senderName}</Text>
             </View>
             <View style={styles.generalContainer}>
                 {
@@ -52,7 +53,7 @@ const Chat = () => {
 
                                             if (sender === user._id) {
                                                 return (
-                                                    <View style={styles.messageContainerUser}>
+                                                    <View key={message._id} style={styles.messageContainerUser}>
                                                         <View style={styles.messageContentUser}>
                                                             <Text style={styles.messageUser}>
                                                                 {content}
@@ -64,7 +65,7 @@ const Chat = () => {
                                             }
 
                                             return (
-                                                <View style={styles.messageContainerSender}>
+                                                <View key={message._id} style={styles.messageContainerSender}>
                                                     <View style={styles.messageContentSender}>
                                                         <Text style={styles.messageSender}>
                                                             {content}

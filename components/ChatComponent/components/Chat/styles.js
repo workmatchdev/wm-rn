@@ -37,7 +37,7 @@ export default StyleSheet.create({
         paddingVertical: 10,
         backgroundColor: colors.principalColor,
         width: '100%',
-        paddingVertical: Platform.OS === 'android' ? 0 : 30
+        paddingVertical: Platform.OS === 'android' ? 10 : 30
     },
     input:{
         borderTopLeftRadius: 8,

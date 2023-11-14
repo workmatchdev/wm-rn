@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import useSession from "../../../../../hooks/sessions/useSession";
 import { useRoute } from "@react-navigation/native";
@@ -12,6 +12,8 @@ const useChat = () => {
     const [messages, setMessages] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    const senderName = useMemo(() =>  router?.params?.name , [ router?.params?.name]);
 
     useEffect(() => {
         socket.on('message', (msg) => {
@@ -64,7 +66,8 @@ const useChat = () => {
         handleSubmit,
         messages,
         error,
-        loading
+        loading,
+        senderName
     };
 }
 

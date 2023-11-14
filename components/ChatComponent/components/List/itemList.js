@@ -45,7 +45,8 @@ const ItemList = (props) => {
             onPress={() => {
                 handleUpdateMessageStatus(_id);
                 navigation.navigate('Chat', {
-                    chatId: _id
+                    chatId: _id,
+                    name: `${name} ${lastName}`
                   });
              }}
         >

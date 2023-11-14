@@ -26,18 +26,21 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
 
-  const options = {
-    headerShown: true,
-    headerBackVisible: false,
-    title: 'Inicio',
-    headerRight: () => <RigthButtons />,
-    headerLeft: () => <LeftButtons />
+  const options = (title) => {
+    return {
+      headerShown: true,
+      headerBackVisible: false,
+      title,
+      headerRight: () => <RigthButtons />,
+      headerLeft: () => <LeftButtons />
+    }
   }
 
   return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
+          headerTitleAlign: 'center',
           headerStyle: {
             backgroundColor: colors.principalColor,
           },
@@ -59,7 +62,7 @@ export default function App() {
         <Stack.Screen
           name="Candidate"
           component={Candidate}
-          options={options}
+          options={options('Candidato')}
           initialParams={{
             seccionName: 'Candidato'
           }}
@@ -67,7 +70,7 @@ export default function App() {
         <Stack.Screen
           name='Notifications'
           component={Notifications}
-          options={options}
+          options={options( 'Notificaciones')}
           initialParams={{
             seccionName: 'Notificaciones'
           }}
@@ -75,7 +78,7 @@ export default function App() {
         <Stack.Screen
           name="Profile"
           component={Profile}
-          options={options}
+          options={options('Perfil')}
           initialParams={{
             seccionName: 'Perfil'
           }}
@@ -83,7 +86,7 @@ export default function App() {
         <Stack.Screen
           name="MyPostulations"
           component={MyPostulations}
-          options={options}
+          options={options('Mis postulaciones')}
           initialParams={{
             seccionName: 'Mis postulaciones'
           }}
@@ -99,7 +102,7 @@ export default function App() {
         <Stack.Screen
           name="CreateJob"
           component={CreateJob}
-          options={options}
+          options={options('Crear trabajo')}
           initialParams={{
             seccionName: 'Crear trabajo'
           }}
@@ -107,13 +110,7 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{
-            headerShown: true,
-            headerBackVisible: false,
-            title: 'Inicio',
-            headerRight: () => <RigthButtons />,
-            headerLeft: () => <LeftButtons />
-          }}
+          options={options('Inicio')}
           initialParams={{
             seccionName: 'Inicio'
           }}
@@ -121,7 +118,7 @@ export default function App() {
         <Stack.Screen
           name="Matchs"
           component={Matchs}
-          options={options}
+          options={options('Matchs')}
           initialParams={{
             seccionName: 'Matchs'
           }}
@@ -129,7 +126,7 @@ export default function App() {
         <Stack.Screen
           name="Postulations"
           component={Postulations}
-          options={options}
+          options={options('Postulantes')}
           initialParams={{
             seccionName: 'Postulantes'
           }}
@@ -137,7 +134,7 @@ export default function App() {
         <Stack.Screen
           name="Subscriptions"
           component={Subscriptions}
-          options={options}
+          options={options('Suscripciones')}
           initialParams={{
             seccionName: 'Suscripciones'
           }}
@@ -145,7 +142,7 @@ export default function App() {
         <Stack.Screen
           name="Vacancies"
           component={Vacancies}
-          options={options}
+          options={options('Vacante')}
           initialParams={{
             seccionName: 'Vacante'
           }}
@@ -153,7 +150,7 @@ export default function App() {
         <Stack.Screen
           name='Jobs'
           component={Jobs}
-          options={options}
+          options={options('Trabajos')}
           initialParams={{
             seccionName: 'Trabajos'
           }}
@@ -161,7 +158,7 @@ export default function App() {
         <Stack.Screen
           name='UpdateJob'
           component={UpdateJob}
-          options={options}
+          options={options('Actualizar Trabajo')}
           initialParams={{
             seccionName: 'Actualizar Trabajo'
           }}
@@ -169,7 +166,7 @@ export default function App() {
         <Stack.Screen
           name='Chats'
           component={ChatList}
-          options={options}
+          options={options('Chats')}
           initialParams={{
             seccionName: 'Chats'
           }}
@@ -177,7 +174,7 @@ export default function App() {
         <Stack.Screen
           name='Chat'
           component={Chat}
-          options={options}
+          options={options('Chat')}
           initialParams={{
             seccionName: 'Chat'
           }}
