@@ -106,7 +106,6 @@ android {
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
-    implementation(':react-native-inappbrowser-reborn')
 
     // implementation('com.google.android.material:material:1.4.0')
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")

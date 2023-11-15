@@ -1,6 +1,6 @@
 {
-  "name": "jobs",
-  "displayName": "jobs",
+  "name": "Workmatch",
+  "displayName": "Workmatch",
   "expo": {
     "extra": {
       "eas": {
