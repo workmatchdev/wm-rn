@@ -1,5 +1,5 @@
 {
-  "name": "jobs",
+  "name": "Workmatch",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -28,6 +28,7 @@
     "react-native-check-box": "^2.1.7",
     "react-native-document-picker": "^9.0.1",
     "react-native-dotenv": "^3.4.9",
+    "react-native-eject": "^0.2.0",
     "react-native-inappbrowser-reborn": "^3.7.0",
     "react-native-multiple-select": "^0.5.12",
     "react-native-pell-rich-editor": "^1.9.0",
