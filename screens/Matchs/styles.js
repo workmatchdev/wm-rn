@@ -4,14 +4,20 @@ import colors from '../../src/assets/colors'
 export default StyleSheet.create({
     principalContainer: {
         padding: 20,
-        height: '100%'
+        height: '100%',
+        flex: 1,
     },
     scrollViewContainer: {
-        height: '100%'
+        height: '100%',
+        flex: 1,
     },
     container: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        flexDirection: 'column',
         backgroundColor: '#fff',
-        height: '100%',
+        minHeight: '100%',
+        flex: 1,
         padding: 10,
         borderRadius: 10
     },
@@ -65,7 +71,8 @@ export default StyleSheet.create({
     description: {
         fontSize: 18,
         fontFamily: 'Nunito-Regular',
-        paddingVertical: 8
+        paddingVertical: 8,
+        maxHeight: '100%'
     },
     bussinesContainer: {
         display: 'flex',

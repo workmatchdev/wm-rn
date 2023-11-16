@@ -1,4 +1,3 @@
-require File.join(File.dirname(`node --print "require.resolve('expo/package.json')"`), "scripts/autolinking")
 # Resolve react_native_pods.rb with node to allow for hoisting
 require Pod::Executable.execute_command('node', ['-p',
   'require.resolve(
@@ -26,20 +25,7 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'jobs' do
-  use_expo_modules!
-  post_integrate do |installer|
-    begin
-      expo_patch_react_imports!(installer)
-    rescue => e
-      Pod::UI.warn e
-    end
-    begin
-      expo_patch_react_imports!(installer)
-    rescue => e
-      Pod::UI.warn e
-    end
-  end
+target 'Workmatch' do
   config = use_native_modules!
 
   # Flags change depending on the env values.
@@ -59,7 +45,7 @@ target 'jobs' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'jobsTests' do
+  target 'WorkmatchTests' do
     inherit! :complete
     # Pods for testing
   end

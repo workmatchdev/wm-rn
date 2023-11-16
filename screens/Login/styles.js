@@ -3,6 +3,7 @@ import colors from "../../src/assets/colors";
 
 export default StyleSheet.create({
     generalContainer: {
+        flex: 1,
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
@@ -16,7 +17,6 @@ export default StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 20
     },
     formContainer: {
         paddingHorizontal: 20,

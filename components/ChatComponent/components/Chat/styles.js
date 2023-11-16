@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import colors from '../../../../src/assets/colors';
 
 export default StyleSheet.create({
@@ -33,10 +33,11 @@ export default StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 10,
+        paddingHorizontal: 15,
         paddingVertical: 10,
         backgroundColor: colors.principalColor,
         width: '100%',
+        paddingVertical: Platform.OS === 'android' ? 10 : 30
     },
     input:{
         borderTopLeftRadius: 8,
@@ -44,6 +45,9 @@ export default StyleSheet.create({
         paddingHorizontal: 10,
         backgroundColor: colors.principalWhite,
         width: '85%'
+    },
+    inputStyles: {
+        height: 45
     },
     sendButtonContainer: {
         display: 'flex',
@@ -90,7 +94,9 @@ export default StyleSheet.create({
         color: '#fff',
         fontFamily: 'Nunito-SemiBold',
         maxWidth: '90%',
-        minWidth: 70
+        minWidth: 70,
+        borderRadius: 10,
+        overflow: 'hidden'
     },
     messageSender:{
         backgroundColor: colors.principalColor,
@@ -99,7 +105,9 @@ export default StyleSheet.create({
         color: '#fff',
         fontFamily: 'Nunito-SemiBold',
         maxWidth: '90%',
-        minWidth: 70
+        minWidth: 70,
+        borderRadius: 10,
+        overflow: 'hidden'
     },
     time:{
         fontSize: 13,

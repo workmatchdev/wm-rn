@@ -19,7 +19,7 @@ const LoginPage = () => {
     }, [navigation, route]);
 
     return (
-        <Layout>
+        <View style={{ flex: 1 }} >
             <View style={styles.generalContainer}>
                 <View style={styles.logoContainer}>
                     <Image
@@ -77,7 +77,7 @@ const LoginPage = () => {
                     </Formik>
                 </View>
             </View>
-        </Layout>
+        </View>
     );
 }
 

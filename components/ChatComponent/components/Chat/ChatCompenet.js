@@ -15,14 +15,15 @@ const Chat = () => {
         handleSubmit,
         messages,
         loading,
-        error
+        error,
+        senderName
     } = useChat();
-    
+
     const scrollViewRef = useRef();
     return (
         <Layout>
             <View>
-                <Text style={styles.chatUser}>Jose Almazan</Text>
+                <Text style={styles.chatUser}>{senderName}</Text>
             </View>
             <View style={styles.generalContainer}>
                 {
@@ -52,7 +53,7 @@ const Chat = () => {
 
                                             if (sender === user._id) {
                                                 return (
-                                                    <View style={styles.messageContainerUser}>
+                                                    <View key={message._id} style={styles.messageContainerUser}>
                                                         <View style={styles.messageContentUser}>
                                                             <Text style={styles.messageUser}>
                                                                 {content}
@@ -64,12 +65,12 @@ const Chat = () => {
                                             }
 
                                             return (
-                                                <View style={styles.messageContainerSender}>
+                                                <View key={message._id} style={styles.messageContainerSender}>
                                                     <View style={styles.messageContentSender}>
                                                         <Text style={styles.messageSender}>
                                                             {content}
                                                         </Text>
-                                                        <Text style={styles.timeSender}>4:15 pm</Text>
+                                                        <Text style={styles.timeSender}>{dateString} {timeString}</Text>
                                                     </View>
                                                 </View>
                                             )
@@ -93,13 +94,13 @@ const Chat = () => {
                 {({ handleChange, handleSubmit, values }) => {
                     return (
                         <View style={styles.inputContainer}>
-                            <View style={styles.input}>
-                                <InputText
-                                    onChangeText={handleChange('message')}
-                                    value={values.message}
-                                    placeholder='Mensaje'
-                                />
-                            </View>
+                            <InputText
+                                styles={styles.input}
+                                inputStyles={styles.inputStyles}
+                                onChangeText={handleChange('message')}
+                                value={values.message}
+                                placeholder='Mensaje'
+                            />
                             <TouchableHighlight
                                 onPress={handleSubmit}
                                 style={styles.sendButtonContainer}

@@ -45,7 +45,8 @@ const ItemList = (props) => {
             onPress={() => {
                 handleUpdateMessageStatus(_id);
                 navigation.navigate('Chat', {
-                    chatId: _id
+                    chatId: _id,
+                    name: `${name} ${lastName}`
                   });
              }}
         >
@@ -59,7 +60,7 @@ const ItemList = (props) => {
                     </View>
                     <View style={styles.column1Text}>
                         <Text style={styles.name}>{name} {lastName}</Text>
-                        <Text style={styles.newMessageText}>{messageText.text}</Text>
+                        <Text numberOfLines={2} ellipsizeMode="tail" style={styles.newMessageText}>{messageText.text}</Text>
                     </View>
                 </View>
                 <View style={styles.info}>

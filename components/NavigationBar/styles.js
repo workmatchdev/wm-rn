@@ -22,7 +22,6 @@ export default StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        width: '20%'
     },
     iconContainer: {
         marginHorizontal: 5
