@@ -8,6 +8,7 @@ import CheckBox from '@react-native-community/checkbox';
 import { useMemo } from 'react';
 import colors from '../../src/assets/colors';
 import useInputserchAndAddToList from './hooks/useInputserchAndAddToList';
+import InputAutoComplete from '../InputAutoComplete';
 
 const InputSerchMultiSelect = (props) => {
 
@@ -19,7 +20,8 @@ const InputSerchMultiSelect = (props) => {
         onSubmit,
         itemList,
         showMore,
-        setShowMore
+        setShowMore,
+        deleteItem
     } = useInputserchAndAddToList({
         handleSubmit: handleSubmitForm,
         defaultItems: currentItemsSelected
@@ -45,6 +47,21 @@ const InputSerchMultiSelect = (props) => {
                         <View style={styles.formContainer}>
                             <View>
                                 {fields.map((field, i) => {
+                                    if (field.type === 'autoComplete') {
+                                        return (
+                                            <InputAutoComplete
+                                                key={i}
+                                                name={field.name}
+                                                label={field.label}
+                                                labelStyles={styles.label}
+                                                inputStyles={styles.input}
+                                                styles={styles.inputContainer}
+                                                onValueChange={setFieldValue}
+                                                handleSubmit={handleSubmit}
+                                                value={values[field.name]}
+                                            />
+                                        )
+                                    }
                                     if (field.type === 'text') {
                                         return (
                                             <InputText
@@ -99,12 +116,12 @@ const InputSerchMultiSelect = (props) => {
             </Formik>
             <View>
                 {itemList.map((item, i) => {
-                    if(!showMore && i > 2) return null 
-                    return listComponent(item,i)
+                    if (!showMore && i > 2) return null
+                    return listComponent(item, i, deleteItem)
                 })}
-                {itemList.length >= 3 ? (
+                {itemList.length > 3 ? (
                     <TouchableHighlight onPress={() => { setShowMore(!showMore) }} style={styles.viewMore}>
-                        <Text style={styles.viewMoreText}>{ !showMore ? 'Ver mas' : 'Ver menos' }</Text>
+                        <Text style={styles.viewMoreText}>{!showMore ? `Ver mas (${itemList.length - 3})` : 'Ver menos'}</Text>
                     </TouchableHighlight>
                 ) : null}
             </View>

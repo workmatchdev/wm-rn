@@ -46,6 +46,7 @@ export default StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 20,
         backgroundColor:'#fff',
+        position: 'relative'
     },
     gender: {
         height: 40,

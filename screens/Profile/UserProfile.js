@@ -11,7 +11,13 @@ import { getFormattedDate } from '../../helpers/date';
 import Button from '../../components/Button';
 
 const UserProfile = () => {
-    const { genders, handleSubmitUpdate, initialValues } = useApplicantsForm()
+    const {
+        genders,
+        handleSubmitUpdate,
+        initialValues,
+        handleAddSkillsInformation,
+        handleDeleteSkillsInformation
+    } = useApplicantsForm()
     return (
         <Layout>
             <View style={styles.generalContainer}>
@@ -141,26 +147,35 @@ const UserProfile = () => {
                         </Formik>
                     </View>
                     <InputSerchMultiSelect
-                        handleSubmit={(values) => {
-                            return values.skill
+                        handleSubmit={async (values, action) => {
+                            if (!values.skill || values.skill.trim() === '') return null
+                            alert('Agregado correctamente')
+                            action.resetForm();
+                            const response = await handleAddSkillsInformation(values, 'upadateSkills')
+                            return response
                         }}
                         title={"Habilidades y Aptitudes"}
+                        items={initialValues.skills}
                         fields={[
                             {
                                 label: "Buscar aptitudes y habilidades",
-                                type: "text",
+                                type: "autoComplete",
                                 name: "skill",
                                 defaultValue: ""
                             }
                         ]}
-                        listComponent={(value, i) => {
+                        listComponent={(value, i, deleteItem) => {
                             return (
-                                <View key={i} style={styles.skillContainer}>
+                                <View key={value.id} style={styles.skillContainer}>
                                     <Text
                                         style={styles.skilText}
-                                    >{value}</Text>
+                                    >{value.skill}</Text>
                                     <View>
                                         <Button
+                                            onPress={async () => {
+                                                const callback = () => deleteItem(value.id);
+                                                await handleDeleteSkillsInformation({ skillId: value.id }, 'removeSkills', callback)
+                                            }}
                                             textStyle={styles.submitButtonText}
                                             style={styles.deleteButton} title="Eliminar" />
                                     </View>
@@ -169,10 +184,17 @@ const UserProfile = () => {
                         }}
                     />
                     <InputSerchMultiSelect
+                        handleSubmit={async (values, action) => {
+                            if (!values.company || values.company.trim() === '') return null
+                            alert('Agregado correctamente')
+                            action.resetForm();
+                            const response = await handleAddSkillsInformation({ experience: values }, 'upadateExperience')
+                            return response
+                        }}
                         title={"Experiencia laboral"}
                         fields={[
                             {
-                                label: "Buscar empresa",
+                                label: "Empresa",
                                 type: "text",
                                 name: "company",
                                 validation: null,
@@ -200,9 +222,46 @@ const UserProfile = () => {
                                 defaultValue: false
                             }
                         ]}
+                        items={initialValues.experience}
+                        listComponent={(value, i, deleteItem) => {
+                            return (
+                                <View key={i} style={styles.experienceContainer}>
+                                    <Text
+                                        style={styles.skilText}
+                                    >{value.experience?.company}</Text>
+                                    <Text
+                                        style={styles.skilText}
+                                    >Desde: {value.experience.start}</Text>
+                                    {
+                                        value.experience.currentJob ? (
+                                            <Text style={styles.skilText}>Trabajo actual</Text>
+                                        ) : (
+                                            <Text
+                                                style={styles.skilText}
+                                            >Hasta: {value.experience.end}</Text>
+                                        )
+                                    }
+                                    <Button
+                                        onPress={async () => {
+                                            const callback = () => deleteItem(value.id);
+                                            await handleDeleteSkillsInformation({ skillId: value.id }, 'removeExperience', callback)
+                                        }}
+                                        textStyle={styles.submitButtonText}
+                                        style={styles.deleteButtonExperience} title="Eliminar" />
+                                </View>
+                            )
+                        }}
                     />
                     <InputSerchMultiSelect
                         title={"Estudios"}
+                        handleSubmit={async (values, action) => {
+                            if (!values.college || values.college.trim() === '') return null
+                            alert('Agregado correctamente')
+                            action.resetForm();
+                            const response = await handleAddSkillsInformation({ studies: values }, 'upadateStudies')
+                            return response
+                        }}
+                        items={initialValues.studies}
                         fields={[
                             {
                                 label: "Buscar Institucion",
@@ -233,6 +292,34 @@ const UserProfile = () => {
                                 defaultValue: false
                             }
                         ]}
+                        listComponent={(value, i, deleteItem) => {
+                            return (
+                                <View key={i} style={styles.experienceContainer}>
+                                    <Text
+                                        style={styles.skilText}
+                                    >{value.studies?.college}</Text>
+                                    <Text
+                                        style={styles.skilText}
+                                    >Desde: {value.studies.start}</Text>
+                                    {
+                                        value.studies.currentJob ? (
+                                            <Text style={styles.skilText}>Estudiando actualmente</Text>
+                                        ) : (
+                                            <Text
+                                                style={styles.skilText}
+                                            >Hasta: {value.studies.end}</Text>
+                                        )
+                                    }
+                                    <Button
+                                        onPress={async () => {
+                                            const callback = () => deleteItem(value.id);
+                                            await handleDeleteSkillsInformation({ skillId: value.id }, 'removeStudies', callback)
+                                        }}
+                                        textStyle={styles.submitButtonText}
+                                        style={styles.deleteButtonExperience} title="Eliminar" />
+                                </View>
+                            )
+                        }}
                     />
                 </ScrollView>
             </View>

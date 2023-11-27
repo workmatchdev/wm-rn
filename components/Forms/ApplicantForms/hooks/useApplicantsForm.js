@@ -16,6 +16,8 @@ const useApplicantsForm = () => {
         }
     }, [user]);
 
+    console.log('initialValues',initialValues);
+
     const handleSubmit = async (values) => {
         try {
             const response = await axios.post('https://work-match-server.vercel.app/api/applicants/create', values);
@@ -81,7 +83,7 @@ const useApplicantsForm = () => {
             setUser(newValues.user)
             alert(newValues.msg)
         } catch (error) {
-            if(error?.response?.data?.msg) {
+            if (error?.response?.data?.msg) {
                 alert(error?.response?.data?.msg)
             } else {
                 alert('Ha ocurrido un error')
@@ -90,16 +92,41 @@ const useApplicantsForm = () => {
     }
 
     const handleUpdateSkills = async (skill) => {
-        try {        
-            const data = {skill}
+        try {
+            const data = { skill }
             const response = await axios.put(`https://work-match-server.vercel.app/api/applicants/update/${id}`, data);
             return response.data;
         } catch (error) {
-            if(error?.response?.data?.msg) {
+            if (error?.response?.data?.msg) {
                 alert(error?.response?.data?.msg)
             } else {
                 alert('Ha ocurrido un error')
             }
+        }
+    }
+
+    const handleAddSkillsInformation = async (values, route) => {
+        try {
+            const response = await axios.put(`http://192.168.134.1:4000/api/applicants/${route}/${user._id}`, values);
+            const data = response.data;
+            console.log('data', data);
+            return data.newSkill
+        } catch (error) {
+            alert(error.response.data.msg)
+        }
+    }
+
+    const handleDeleteSkillsInformation = async (values, route, callback) => {
+        try {
+            const info = {
+                ...values,
+                userId: user._id
+            }
+            await fetch(`http://192.168.134.1:4000/api/applicants/${route}/${info.userId}/${info.skillId}`, { method: 'delete' });
+            if (callback) callback()
+        } catch (error) {
+            console.log('error', error);
+            alert(error.response.data.msg)
         }
     }
 
@@ -117,6 +144,8 @@ const useApplicantsForm = () => {
         handleSubmitUpdate,
         handleDeleteItem,
         handleUpdateSkills,
+        handleAddSkillsInformation,
+        handleDeleteSkillsInformation,
         genders,
         initialValues
     };

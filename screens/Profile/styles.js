@@ -137,6 +137,17 @@ export default StyleSheet.create({
         backgroundColor:'#fff',
         border: "1px solid #red"
     },
+    experienceContainer: {
+        display: "flex",
+        justifyContent: "space-between",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        padding: 5,
+        paddingHorizontal: 20,
+        backgroundColor:'#fff',
+        border: "1px solid #red",
+        width: '100%'
+    },
     skilText: {
         fontSize: 18,
         paddingVertical: 5,
@@ -148,6 +159,18 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: 5
+    },
+    deleteButtonExperience:{
+        height: 45,
+        marginVertical: 12,
+        paddingHorizontal: 10,
+        borderRadius: 8,
+        backgroundColor: '#F74B4B',
+        width: '100%',
+        textAlign: 'center',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     deleteButton: {
         height: 45,
