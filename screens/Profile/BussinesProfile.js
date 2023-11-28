@@ -46,7 +46,7 @@ const BussinesProfile = () => {
         "Telecomunicaciones"
     ]
 
-    const { initialValues, handleSubmitUpdate } = useApplicantsForm();
+    const { initialValues, handleSubmitUpdate, handleUploadFile } = useApplicantsForm();
 
     return (
         <Layout>
@@ -54,10 +54,23 @@ const BussinesProfile = () => {
                 <ScrollView>
                     <View style={styles.principalContainer}>
                         <View style={styles.formContainer}>
+                            <Text style={styles.title}>Foto de perfil</Text>
+                            <InputFile
+                                label='Subir foto de perfil'
+                                inputStyles={styles.uploadPictureButton}
+                                labelStyles={styles.uploadPictureLabel}
+                                styles={styles.inputContainer}
+                                uploadFile={handleUploadFile}
+                                initialValue={initialValues.image}
+                            />
+                        </View>
+                    </View>
+                    <View style={styles.principalContainer}>
+                        <View style={styles.formContainer}>
                             <Text style={styles.title}>Tu perfil</Text>
                             <Formik
                                 initialValues={initialValues}
-                                onSubmit={async (values,actions) => {
+                                onSubmit={async (values, actions) => {
                                     await handleSubmitUpdate(values, initialValues._id)
                                     actions.setTouched({})
                                 }}
@@ -66,12 +79,6 @@ const BussinesProfile = () => {
                                     const isBeingEdited = Object.values(touched).length;
                                     return (
                                         <>
-                                            <InputFile
-                                                label='Logo'
-                                                inputStyles={styles.input}
-                                                labelStyles={styles.label}
-                                                styles={styles.inputContainer}
-                                            />
                                             <InputText
                                                 styles={styles.inputContainer}
                                                 inputStyles={styles.input}

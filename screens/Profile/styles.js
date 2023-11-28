@@ -184,4 +184,18 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    uploadPictureButton: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#f1f1f1',
+        paddingVertical: 20,
+    },
+    uploadPictureLabel: {
+        marginVertical: 10,
+        color: '#B0B0B0',
+        fontSize: 15,
+        fontFamily: 'Nunito-Bold',
+    }
 });

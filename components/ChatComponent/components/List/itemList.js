@@ -22,6 +22,13 @@ const ItemList = (props) => {
         lastName
     } = informationChat;
 
+    console.log('informationChat', informationChat);
+
+    const currentImage = useMemo(() => {
+        if(informationChat?.image?.url !== 'default') return { uri: informationChat?.image.url }
+        return require('../../../../src/img/user.png')
+    }, [informationChat])
+
     const messageText = useMemo(() => {
         if (lastMessages.type = 'text') {
             const date = new Date(lastMessages[0].date)
@@ -47,14 +54,14 @@ const ItemList = (props) => {
                 navigation.navigate('Chat', {
                     chatId: _id,
                     name: `${name} ${lastName}`
-                  });
-             }}
+                });
+            }}
         >
             <View style={styles.listItem}>
                 <View style={styles.column1}>
                     <View style={styles.imageContainer}>
                         <Image
-                            source={{ uri: 'https://hips.hearstapps.com/hmg-prod/images/one-piece-gear-5-portada-6505f17bdc0df.jpg?crop=0.75xw:1xh;center,top&resize=1200:*' }}
+                            source={currentImage}
                             style={{ width: 70, height: 70 }}
                         />
                     </View>

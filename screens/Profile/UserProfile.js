@@ -16,12 +16,26 @@ const UserProfile = () => {
         handleSubmitUpdate,
         initialValues,
         handleAddSkillsInformation,
-        handleDeleteSkillsInformation
+        handleDeleteSkillsInformation,
+        handleUploadFile
     } = useApplicantsForm()
     return (
         <Layout>
             <View style={styles.generalContainer}>
                 <ScrollView>
+                    <View style={styles.principalContainer}>
+                        <View style={styles.formContainer}>
+                            <Text style={styles.title}>Foto de perfil</Text>
+                            <InputFile
+                                label='Subir foto de perfil'
+                                inputStyles={styles.uploadPictureButton}
+                                labelStyles={styles.uploadPictureLabel}
+                                styles={styles.inputContainer}
+                                uploadFile={handleUploadFile}
+                                initialValue={initialValues.image}
+                            />
+                        </View>
+                    </View>
                     <View style={styles.principalContainer}>
                         <Text style={styles.title}>Tu perfil</Text>
                         <Formik
@@ -35,12 +49,6 @@ const UserProfile = () => {
                                 const isBeingEdited = Object.values(touched).length;
                                 return (
                                     <View style={styles.formContainer}>
-                                        <InputFile
-                                            label='Foto de perfil'
-                                            inputStyles={styles.input}
-                                            labelStyles={styles.label}
-                                            styles={styles.inputContainer}
-                                        />
                                         <InputText
                                             label='Nombre'
                                             inputStyles={styles.input}

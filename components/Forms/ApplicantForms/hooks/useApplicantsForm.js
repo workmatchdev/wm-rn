@@ -16,8 +16,6 @@ const useApplicantsForm = () => {
         }
     }, [user]);
 
-    console.log('initialValues',initialValues);
-
     const handleSubmit = async (values) => {
         try {
             const response = await axios.post('https://work-match-server.vercel.app/api/applicants/create', values);
@@ -27,6 +25,19 @@ const useApplicantsForm = () => {
             navigation.navigate("Home")
         } catch (error) {
             alert(error.response.data.msg)
+        }
+    }
+    const handleUploadFile = async (props) => {
+        try {
+            const response = await axios.post(`https://work-match-server.vercel.app/api/applicants/uploadImage`, {
+                userId: user._id,
+                image: props.base64,
+            });
+            setUser(response.data.user);
+            alert(response.data.msg)
+        } catch (error) {
+            console.log(error);
+            alert('Ha ocurrido un error, por favor intente mas tarde')
         }
     }
 
@@ -107,7 +118,7 @@ const useApplicantsForm = () => {
 
     const handleAddSkillsInformation = async (values, route) => {
         try {
-            const response = await axios.put(`http://192.168.134.1:4000/api/applicants/${route}/${user._id}`, values);
+            const response = await axios.put(`https://work-match-server.vercel.app/api/applicants/${route}/${user._id}`, values);
             const data = response.data;
             console.log('data', data);
             return data.newSkill
@@ -122,7 +133,7 @@ const useApplicantsForm = () => {
                 ...values,
                 userId: user._id
             }
-            await fetch(`http://192.168.134.1:4000/api/applicants/${route}/${info.userId}/${info.skillId}`, { method: 'delete' });
+            await fetch(`https://work-match-server.vercel.app/api/applicants/${route}/${info.userId}/${info.skillId}`, { method: 'delete' });
             if (callback) callback()
         } catch (error) {
             console.log('error', error);
@@ -132,7 +143,7 @@ const useApplicantsForm = () => {
 
     const handleDeleteItem = async (id) => {
         try {
-            await axios.delete(`/api/applicants/delete/${id}`);
+            await axios.delete(`https://work-match-server.vercel.app/api/applicants/delete/${id}`);
             // deleteRol(id)
         } catch (error) {
             alert('Ha ocurrido un error al eliminar el rol')
@@ -146,6 +157,7 @@ const useApplicantsForm = () => {
         handleUpdateSkills,
         handleAddSkillsInformation,
         handleDeleteSkillsInformation,
+        handleUploadFile,
         genders,
         initialValues
     };
