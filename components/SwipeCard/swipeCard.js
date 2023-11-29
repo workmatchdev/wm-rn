@@ -1,21 +1,16 @@
 import React, { useState } from 'react';
-import { View, ScrollView, TouchableHighlight } from 'react-native';
+import { View, ScrollView, TouchableHighlight, Text } from 'react-native';
 import SwipeCards from 'react-native-swipe-cards';
 import Card from './components/Card';
 import Modal from "../Modal";
 import style from './style';
 import { XMarck } from '../../src/assets/icons';
+import useSwipeCard from './hooks/useSwipeCard';
 
 const SwipeCard = () => {
-
-    const [cards, setCards] = useState([
-        { text: 'Card 1' },
-        { text: 'Card 2' },
-        { text: 'Card 3' },
-    ])
-
-    const [isOpen, setIsOpen] = useState(false)
-
+    const { listJobsMatch } = useSwipeCard();
+    const [isOpen, setIsOpen] = useState(false);
+    const [currentCard, setCurrentCard] = useState({})
     const handleYup = (card) => {
         // Lógica al deslizar hacia la derecha (like)
         console.log(`Like para: ${card.text}`);
@@ -26,7 +21,10 @@ const SwipeCard = () => {
         console.log(`Dislike para: ${card.text}`);
     };
 
-    const handleCloseModal = () => setIsOpen(!isOpen)
+    const handleCloseModal = (cardData) => {
+        if(!isOpen) setCurrentCard(cardData)
+        setIsOpen(!isOpen)
+    }
 
     const buttonClose = () => {
         return (
@@ -54,18 +52,27 @@ const SwipeCard = () => {
                     }}
                 >
                     <Card
+                        cardData={currentCard}
                         buttonTopRight={buttonClose}
                     />
                 </ScrollView>
             </Modal>
             <SwipeCards
-                cards={cards}
-                renderCard={(cardData) => <Card handleCloseModal={handleCloseModal} {...cardData} />}
-                loop={true} // Si deseas que las tarjetas se repitan una vez mostradas todas
+                renderNoMoreCards={() => (
+                    <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
+                        <Text style={{ fontFamily: 'Nunito-Bold', fontSize: 18 }} >No se han encontrado mas coincidencias</Text>
+                        <Text style={{ fontFamily: 'Nunito-Bold', fontSize: 18 }} >Por favor intenta mas tarde</Text>
+                    </View>
+                )}
+                cards={listJobsMatch}
+                renderCard={(cardData) => <Card handleCloseModal={handleCloseModal} cardData={cardData} />}
+                loop={false}
                 showYup={true}
                 showNope={true}
                 handleYup={handleYup}
                 handleNope={handleNope}
+                yupText={'Like'}
+                noText={'Nope'}
             />
         </View>
     );

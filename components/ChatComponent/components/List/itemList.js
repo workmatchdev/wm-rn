@@ -22,8 +22,6 @@ const ItemList = (props) => {
         lastName
     } = informationChat;
 
-    console.log('informationChat', informationChat);
-
     const currentImage = useMemo(() => {
         if(informationChat?.image?.url !== 'default') return { uri: informationChat?.image.url }
         return require('../../../../src/img/user.png')

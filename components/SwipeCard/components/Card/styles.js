@@ -66,7 +66,7 @@ export default StyleSheet.create({
         fontSize: 18,
         fontFamily: 'Nunito-Regular',
         paddingVertical: 8,
-        textAlign: 'left'
+        textAlign: 'left',
     },
     bussinesContainer: {
         display: 'flex',

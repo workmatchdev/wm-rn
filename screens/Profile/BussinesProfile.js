@@ -10,44 +10,7 @@ import useApplicantsForm from '../../components/Forms/ApplicantForms/hooks/useAp
 
 
 const BussinesProfile = () => {
-    const sectores = [
-        "Agricultura",
-        "Alimentos y bebidas",
-        "Automotriz",
-        "Bienes raíces",
-        "Comercio minorista",
-        "Construcción",
-        "Consultoría",
-        "Deportes",
-        "Educación",
-        "Energía",
-        "Entretenimiento",
-        "Farmacéutica",
-        "Finanzas y banca",
-        "Gobierno y administración pública",
-        "Hotelería y turismo",
-        "Industria química",
-        "Industria textil y confección",
-        "Ingeniería",
-        "Investigación y desarrollo",
-        "Logística y transporte",
-        "Manufactura",
-        "Medios de comunicación",
-        "Minería y extracción de recursos",
-        "Moda y belleza",
-        "Organizaciones sin fines de lucro",
-        "Publicidad y marketing",
-        "Salud y medicina",
-        "Seguros",
-        "Servicios de TI",
-        "Servicios financieros",
-        "Servicios legales",
-        "Servicios profesionales",
-        "Telecomunicaciones"
-    ]
-
-    const { initialValues, handleSubmitUpdate, handleUploadFile } = useApplicantsForm();
-
+    const { initialValues, handleSubmitUpdate, handleUploadFile, sectores } = useApplicantsForm();
     return (
         <Layout>
             <View style={styles.generalContainer}>
