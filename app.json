@@ -3,9 +3,7 @@
   "displayName": "Workmatch",
   "expo": {
     "orientation": "portrait",
-    "icon": "./src/img/icon.png",
-    "resizeMode": "contain",
-    "bacgroundColor": "#FFFFFF",
+    "icon": "./src/assets/icon.png",
     "extra": {
       "eas": {
         "projectId": "59ff3c19-e89f-478d-89e3-55529fb74d44"
@@ -22,12 +20,17 @@
     ],
     "owner": "josepalmz19",
     "slug": "workmatchdev",
+    "splash": {
+      "image": "./src/assets/icon.png",
+      "resizeMode": "contain",
+      "bacgroundColor": "#FFFFFF"
+    },
     "ios": {
       "supportsTablet": "false"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/img/icon.png"
+        "foregroundImage": "./src/assets/icon.png"
       }
     }
   }

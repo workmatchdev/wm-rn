@@ -19,7 +19,7 @@ const useSwipeCard = () => {
                 userId: user._id , 
                 currentPage
             });
-            const response = await axios.post(`http://192.168.134.1:4000/api/jobs/getAvalibleMatchs`,{
+            const response = await axios.post(`https://work-match-server.vercel.app/api/jobs/getAvalibleMatchs`,{
                 userId: user._id , 
                 currentPage
             });
