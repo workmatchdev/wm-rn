@@ -21,8 +21,11 @@ const InputFile = (props) => {
   console.log('initialValue',initialValue);
 
   const currentImage = useMemo(() => {
-    if(initialValue?.url !== 'default' && !selectedFile) return { uri: initialValue?.url }
-    if(selectedFile) return { uri: selectedFile }
+    const formatURL = (url) => url.replace('http','https');
+    if(initialValue?.url !== 'default' && !selectedFile) {
+      return { uri: formatURL(initialValue?.url) }
+    }
+    if(selectedFile) return { uri: formatURL(selectedFile) }
     return require('../../src/img/user.png')
   }, [selectedFile,initialValue])
 
