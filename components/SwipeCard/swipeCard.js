@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, ScrollView, TouchableHighlight, Text } from 'react-native';
 import SwipeCards from 'react-native-swipe-cards';
 import Card from './components/Card';
@@ -6,23 +6,21 @@ import Modal from "../Modal";
 import style from './style';
 import { XMarck } from '../../src/assets/icons';
 import useSwipeCard from './hooks/useSwipeCard';
+import { XmarkIcon } from '../../src/assets/icons';
 
 const SwipeCard = () => {
-    const { listJobsMatch } = useSwipeCard();
+    const {
+        error,
+        listJobsMatch,
+        handleYup,
+        handleNope,
+        cardRemoved
+    } = useSwipeCard();
     const [isOpen, setIsOpen] = useState(false);
     const [currentCard, setCurrentCard] = useState({})
-    const handleYup = (card) => {
-        // Lógica al deslizar hacia la derecha (like)
-        console.log(`Like para: ${card.text}`);
-    };
-
-    const handleNope = (card) => {
-        // Lógica al deslizar hacia la izquierda (dislike)
-        console.log(`Dislike para: ${card.text}`);
-    };
 
     const handleCloseModal = (cardData) => {
-        if(!isOpen) setCurrentCard(cardData)
+        if (!isOpen) setCurrentCard(cardData)
         setIsOpen(!isOpen)
     }
 
@@ -41,6 +39,17 @@ const SwipeCard = () => {
             </TouchableHighlight>
         )
     }
+
+    if (error) return (
+        <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+            <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', paddingVertical: 40, paddingHorizontal: 10 }}>
+                <View style={{ marginBottom: 10, borderWidth: 3, borderColor: '#EE2B2B', borderRadius: 50, padding: 5 }}>
+                    <XmarkIcon width={60} height={60} fill='#EE2B2B' />
+                </View>
+                <Text style={{ fontFamily: 'Nunito-Bold', fontSize: 18, color: '#fff', backgroundColor: '#EE2B2B', padding: 10, borderRadius: 5 }} >{error}</Text>
+            </View>
+        </View>
+    )
 
     return (
         <View style={{ flex: 1, width: '100%', alignItems: 'stretch' }}>
@@ -69,8 +78,10 @@ const SwipeCard = () => {
                 loop={false}
                 showYup={true}
                 showNope={true}
+                verticalSwipe={false}
                 handleYup={handleYup}
                 handleNope={handleNope}
+                cardRemoved={(card) => cardRemoved(card)}
                 yupText={'Like'}
                 noText={'Nope'}
             />

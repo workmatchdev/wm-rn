@@ -18,8 +18,6 @@ const InputFile = (props) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageInformation, setImageInformation] = useState(null)
 
-  console.log('initialValue',initialValue);
-
   const currentImage = useMemo(() => {
     const formatURL = (url) => url.replace('http','https');
     if(initialValue?.url !== 'default' && !selectedFile) {

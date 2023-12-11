@@ -37,7 +37,6 @@ const App: React.FC = () => {
   const toggle = () => {
     ref.current?._toggleSelector()
   }
-  console.log(selectedItems)
   return (
     <View>
       <SectionedMultiSelect<ItemType>

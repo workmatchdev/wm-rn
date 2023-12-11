@@ -157,7 +157,6 @@ const useApplicantsForm = () => {
         try {
             const response = await axios.put(`https://work-match-server.vercel.app/api/applicants/${route}/${user._id}`, values);
             const data = response.data;
-            console.log('data', data);
             return data.newSkill
         } catch (error) {
             alert(error.response.data.msg)

@@ -137,7 +137,6 @@ const items = [
     id: 34
   }
 ]
-console.log(items)
 
 // const items2 =
 //   [{

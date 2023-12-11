@@ -21,9 +21,8 @@ import colors from '../../src/assets/colors';
 
 const SideBar = () => {
 
+    const navigation = useNavigation();
     const { changeSideBarStatus, visibleSideBar, handleLogout } = useSideBar();
-    const navigation = useNavigation()
-
     const { isBussiness } = useSession();
 
     if (!visibleSideBar) return null
@@ -63,25 +62,25 @@ const SideBar = () => {
                 icon={<SearchIcon width='30' height='30' fill='#fff' />}
                 onPress={() => changeSideBarStatus()}
             /> */}
-            {isBussiness && <Item
+            {/* {isBussiness && <Item
                 route='Postulations'
                 text={'Postulantes'}
                 icon={<PostulationsIcon width='30' height='30' fill='#fff' />}
                 onPress={() => changeSideBarStatus()}
             />
-            }
+            } */}
             <Item
                 route='Subscriptions'
                 text={'Membresia'}
                 icon={<MoneyIcon width='30' height='30' fill='#fff' />}
                 onPress={() => changeSideBarStatus()}
             />
-            {!isBussiness && <Item
+            {/* {!isBussiness && <Item
                 route='MyPostulations'
                 text={'Mis postulaciones'}
                 icon={<PostulationsIcon width='30' height='30' fill='#fff' />}
                 onPress={() => changeSideBarStatus()}
-            />}
+            />} */}
             {isBussiness && <Item
                 route='CreateJob'
                 text={'Crear trabajo'}
