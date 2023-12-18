@@ -32,7 +32,7 @@ export default function PaymentScreen() {
       {
         googlePay: {
           testEnv: true,
-          merchantName: 'My merchant name',
+          merchantName: 'Workmatch',
           merchantCountryCode: 'US',
           currencyCode: 'USD',
           billingAddressConfig: {

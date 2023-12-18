@@ -18,7 +18,7 @@ export default StyleSheet.create({
         height: '100%',
         padding: 20
     },
-    logoContainer:{
+    logoContainer: {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -70,7 +70,7 @@ export default StyleSheet.create({
         backgroundColor: '#fff',
         flex: 1,
     },
-    paymentContainer:{
+    paymentContainer: {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
@@ -93,7 +93,7 @@ export default StyleSheet.create({
     },
     cancelButton: {
         height: 45,
-        marginVertical: 12,
+        marginVertical: 5,
         paddingHorizontal: 10,
         borderRadius: 8,
         backgroundColor: '#F74B4B',
@@ -211,5 +211,8 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: 'rgba(52, 52, 52, 0.8)',
         paddingHorizontal: 10
-    }
+    },
+    disabled: {
+        opacity: 0.8, // Cambia la opacidad para indicar que está deshabilitado
+    },
 });

@@ -30,7 +30,12 @@ const Subscriptions = () => {
         handleSelectPlan,
         selectedPlan,
         hasActivePlan,
-        handleCancelSelectPlan
+        handleCancelSelectPlan,
+        membershipData,
+        handleRenewMembership,
+        isActiveMembership,
+        handleChangeMembership,
+        cancelChangePlan
     } = useSuscriptions()
 
     const headerHeight = useHeaderHeight()
@@ -52,7 +57,10 @@ const Subscriptions = () => {
                     textStyle={styles.submitButtonText}
                     style={styles.submitButton}
                     title={`$ ${total} MXN`}
-                    onPress={() => { handleSelectPlan({ ...item, total }) }}
+                    onPress={() => {
+                        const data = { ...item, total };
+                        handleSelectPlan(data)
+                    }}
                 />
             </View>
         );
@@ -76,6 +84,16 @@ const Subscriptions = () => {
                                     />
                                 </View>
                             </View>
+                            {
+                                !hasActivePlan && isActiveMembership && (
+                                    <Button
+                                        onPress={cancelChangePlan}
+                                        textStyle={styles.submitButtonText}
+                                        style={styles.cancelButton}
+                                        title='Cancelar'
+                                    />
+                                )
+                            }
                         </View>
                     )}
 
@@ -84,12 +102,12 @@ const Subscriptions = () => {
                             <Text style={styles.title}>Subscripción activa </Text>
                             <View>
                                 <View style={styles.activeSubscriptionContianerRow}>
-                                    <Text style={styles.labelSubscription}>Plan premium:</Text>
-                                    <Text style={styles.infoSubscription}>$315 MXN</Text>
+                                    <Text style={styles.labelSubscription}>{membershipData.name}:</Text>
+                                    <Text style={styles.infoSubscription}>{membershipData.price}</Text>
                                 </View>
                                 <View style={styles.activeSubscriptionContianerRow}>
                                     <Text style={styles.labelSubscription}>Fecha de vencimieto:</Text>
-                                    <Text style={styles.infoSubscription}>15/08/2023</Text>
+                                    <Text style={styles.infoSubscription}>{membershipData.end}</Text>
                                 </View>
                             </View>
                             <View>
@@ -97,10 +115,12 @@ const Subscriptions = () => {
                                     textStyle={styles.submitButtonText}
                                     style={styles.submitButton}
                                     title='Renovar'
+                                    onPress={handleRenewMembership}
                                 />
                                 <Button
+                                    onPress={handleChangeMembership}
                                     textStyle={styles.submitButtonText}
-                                    style={styles.submitButton}
+                                    style={[styles.submitButton]}
                                     title='Cambiar plan'
                                 />
                             </View>
@@ -110,42 +130,41 @@ const Subscriptions = () => {
                     {selectedPlan && (
                         <Modal
                             isOpen={!!selectedPlan}
-                            style={{...styles.modalContainer, paddingTop: headerHeight}}
+                            style={{ ...styles.modalContainer, paddingTop: headerHeight }}
                         >
-                            <View style={styles.principalContainer}>
-                                <View style={styles.paymentContainer}>
-                                    <View>
-                                        <Text style={styles.title}>Pagar subscripción</Text>
-                                        <View
-                                            style={{
-                                                display:'flex',
-                                                flexDirection: 'row',
-                                                alignContent: 'center',
-                                                paddingHorizontal: 10
-                                            }}
-                                        >
-                                            <Text style={styles.selectedPlanName}>{selectedPlan.name} </Text>
-                                            <Text style={styles.selectedPlanName}>${selectedPlan.total} MXN</Text>
+                            <ScrollView>
+                                <View style={styles.principalContainer}>
+                                    <View style={styles.paymentContainer}>
+                                        <View>
+                                            <Text style={styles.title}>Pagar subscripción</Text>
+                                            <View
+                                                style={{
+                                                    display: 'flex',
+                                                    flexDirection: 'row',
+                                                    alignContent: 'center',
+                                                    paddingHorizontal: 10
+                                                }}
+                                            >
+                                                <Text style={styles.selectedPlanName}>{selectedPlan.name} </Text>
+                                                <Text style={styles.selectedPlanName}>${selectedPlan.total} MXN</Text>
+                                            </View>
+                                            <View>
+                                                {selectedPlan.benefits.map((benefit, i) => {
+                                                    return <Text key={i} style={styles.featureAvailable}>- {benefitsName[benefit]}</Text>
+                                                })}
+                                            </View>
                                         </View>
                                         <View>
-                                            {selectedPlan.benefits.map(benefit => {
-                                                return <Text style={styles.featureAvailable}>- {benefitsName[benefit]}</Text>
-                                            })}
+                                            <Stripe
+                                                data={selectedPlan}
+                                                onCancel={handleCancelSelectPlan}
+                                                onSuccess={handleCancelSelectPlan}
+                                            />
                                         </View>
                                     </View>
-                                    <View>
-                                        <Stripe />
-                                        <Button
-                                            onPress={handleCancelSelectPlan}
-                                            textStyle={styles.submitButtonText}
-                                            style={styles.cancelButton}
-                                            title='Cancelar'
-                                        />
-                                    </View>
                                 </View>
-                            </View>
+                            </ScrollView>
                         </Modal>
-
                     )}
                 </ScrollView>
             </View>

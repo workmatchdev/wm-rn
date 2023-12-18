@@ -8,7 +8,11 @@ const useSession = () => {
 
     const {
         user,
-        token
+        token,
+        membership,
+        setMembership,
+        isActiveMembership,
+        isFreeMembership
     } = useStoreLogin();
 
     const islogged = useMemo(() => {
@@ -29,7 +33,11 @@ const useSession = () => {
         user,
         token,
         islogged,
-        isBussiness
+        isBussiness,
+        membership,
+        isActiveMembership,
+        isFreeMembership,
+        setMembership
     };
 }
 

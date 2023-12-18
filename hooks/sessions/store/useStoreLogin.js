@@ -6,6 +6,13 @@ let store = (set) => ({
     setUser: (user) => set((state) => ({ ...state, user })),
     token: null,
     setToken: (token) => set((state) => ({ ...state, token })),
+    membership: null,
+    setMembership: (membership) => set((state) => ({ ...state, membership })),
+    isActiveMembership: false,
+    setIsActiveMembership: (isActiveMembership) => set((state) => ({ ...state, isActiveMembership })),
+    isFreeMembership: false,
+    setIsFreeMembership: (isFreeMembership) => set((state) => ({ ...state, isFreeMembership })),
+
 })
 store = persist(store, { name: 'loginStore', getStorage: () => AsyncStorage })
 export default create(store);

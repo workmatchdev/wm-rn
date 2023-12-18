@@ -14,6 +14,9 @@ const useLogin = () => {
     setUser,
     token,
     setToken,
+    setMembership,
+    setIsActiveMembership,
+    setIsFreeMembership
   } = useStoreLogin();
 
   // useEffect(() => {
@@ -22,10 +25,16 @@ const useLogin = () => {
 
   const handleLogin = async (values) => {
     try {
-      const response = await axios.post('https://work-match-server.vercel.app/api/auth/user/auth/app', values);
+      const response = await axios.post('http://192.168.134.1:4000/api/auth/user/auth/app', values);
       const sessionData = response.data;
       setUser(sessionData.usuario);
-      setToken(sessionData.token);      
+      setToken(sessionData.token);
+      setMembership({
+        activeMembership: sessionData.activeMemberships,
+        membership: sessionData.membership
+      })
+      setIsActiveMembership(sessionData.isActive)
+      setIsFreeMembership(sessionData.freePlan)
       router.navigate('Home')
     } catch (error) {
       setError(error?.response?.data?.msg)
