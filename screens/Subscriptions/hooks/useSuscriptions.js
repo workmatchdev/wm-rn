@@ -85,7 +85,8 @@ const useSuscriptions = () => {
         handleRenewMembership,
         isActiveMembership,
         handleChangeMembership,
-        cancelChangePlan
+        cancelChangePlan,
+        isFreeMembership
     };
 }
 

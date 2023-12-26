@@ -7,15 +7,21 @@ import style from './style';
 import { XMarck } from '../../src/assets/icons';
 import useSwipeCard from './hooks/useSwipeCard';
 import { XmarkIcon } from '../../src/assets/icons';
+import NewMatchModal from '../NewMatchModal/newMatchModal';
 
-const SwipeCard = () => {
+const SwipeCard = ({ currentJob }) => {
     const {
         error,
         listJobsMatch,
+        openNewModal,
         handleYup,
         handleNope,
-        cardRemoved
-    } = useSwipeCard();
+        cardRemoved,
+        onCloseNewMatchModal,
+        setGetCards
+    } = useSwipeCard({
+        currentJob
+    });
     const [isOpen, setIsOpen] = useState(false);
     const [currentCard, setCurrentCard] = useState({})
 
@@ -51,8 +57,16 @@ const SwipeCard = () => {
         </View>
     )
 
+    const noMoreCards = (
+        <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
+            <Text style={{ fontFamily: 'Nunito-Bold', fontSize: 18 }} >No se han encontrado mas coincidencias</Text>
+            <Text style={{ fontFamily: 'Nunito-Bold', fontSize: 18 }} >Por favor intenta mas tarde</Text>
+        </View>
+    )
+
     return (
         <View style={{ flex: 1, width: '100%', alignItems: 'stretch' }}>
+            <NewMatchModal openModal={openNewModal} onClose={onCloseNewMatchModal} />
             <Modal style={style.principalContainer} isOpen={isOpen}>
                 <ScrollView
                     style={{ flex: 1, padding: 10 }}
@@ -67,12 +81,10 @@ const SwipeCard = () => {
                 </ScrollView>
             </Modal>
             <SwipeCards
-                renderNoMoreCards={() => (
-                    <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
-                        <Text style={{ fontFamily: 'Nunito-Bold', fontSize: 18 }} >No se han encontrado mas coincidencias</Text>
-                        <Text style={{ fontFamily: 'Nunito-Bold', fontSize: 18 }} >Por favor intenta mas tarde</Text>
-                    </View>
-                )}
+                renderNoMoreCards={() => {
+                    setGetCards(true)
+                    return noMoreCards
+                }}
                 cards={listJobsMatch}
                 renderCard={(cardData) => <Card handleCloseModal={handleCloseModal} cardData={cardData} />}
                 loop={false}

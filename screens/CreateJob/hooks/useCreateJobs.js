@@ -47,7 +47,7 @@ const useCreateJobs = (props) => {
 
     useEffect(() => {
         const getJob = async () => {
-            const response = await axios.get(`https://work-match-server.vercel.app/api/jobs/getJob/${jobId}`);
+            const response = await axios.get(`http://192.168.134.1:4000/api/jobs/getJob/${jobId}`);
             const data = response.data;
             const savedKeyWords = response.data.keywords.map(word => word.id);
             const savedExtraKeyWords = response.data.extraKeywords.map(word => word.id);
@@ -69,7 +69,7 @@ const useCreateJobs = (props) => {
                 keywords: keywords[0].keywords,
                 extraKeywords: extraKeywords[0].extraKeywords,
             };
-            const response = await axios.post('https://work-match-server.vercel.app/api/jobs/create', body);
+            const response = await axios.post('http://192.168.134.1:4000/api/jobs/create', body);
             const data = response.data;
             alert(data.msg);
             navigation.navigate("Jobs")
@@ -88,7 +88,7 @@ const useCreateJobs = (props) => {
                 keywords: keywords[0].keywords,
                 extraKeywords: extraKeywords[0].extraKeywords,
             };
-            const response = await axios.put(`https://work-match-server.vercel.app/api/jobs/update/${jobId}`, body);
+            const response = await axios.put(`http://192.168.134.1:4000/api/jobs/update/${jobId}`, body);
             const newValues = response.data;
             updateJob(newValues.data)
             alert(newValues.msg)
@@ -105,7 +105,7 @@ const useCreateJobs = (props) => {
 
     const handleDeleteItem = async (id) => {
         try {
-            await axios.delete(`https://work-match-server.vercel.app/api/jobs/delete/${id}`);
+            await axios.delete(`http://192.168.134.1:4000/api/jobs/delete/${id}`);
             deleteJob(id);
             alert('Trabajo eliminado correctamente')
         } catch (error) {

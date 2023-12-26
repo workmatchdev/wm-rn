@@ -13,7 +13,7 @@ import Profile from './screens/Profile';
 import Subscriptions from './screens/Subscriptions';
 import Vacancies from './screens/Vacancies';
 import Notifications from './screens/Notifications/';
-import Candidate from './screens/Candidate/Candidate';
+// import Candidate from './screens/Candidate/Candidate';
 import UpdateJob from './screens/UpdateJob';
 import Chat from './components/ChatComponent/components/Chat';
 import ChatList from './components/ChatComponent/components/List';
@@ -59,14 +59,14 @@ export default function App() {
             seccionName: 'Login'
           }}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Candidate"
           component={Candidate}
           options={options('Candidato')}
           initialParams={{
             seccionName: 'Candidato'
           }}
-        />
+        /> */}
         <Stack.Screen
           name='Notifications'
           component={Notifications}

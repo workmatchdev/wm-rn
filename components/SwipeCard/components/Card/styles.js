@@ -20,6 +20,32 @@ export default StyleSheet.create({
         height: 40,
         resizeMode: 'contain'
     },
+    logoApplicant: {
+        width: '100%',
+        height: 100,
+        resizeMode: 'contain'
+    },
+    logoContainerApplicant:{
+        display: 'flex',
+        alignItems: 'center',
+        width: '100%',
+        padding: 15,
+        marginRight: 10
+    },
+    skillList: {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap'
+    },
+    skillItem: {
+        paddingHorizontal: 8,
+        paddingVertical: 2,
+        borderBlockColor: colors.principalColor,
+        borderWidth: 1.5,
+        borderRadius: 20,
+        marginRight: 5,
+        marginBottom: 5
+    },
     logoContainer: {
         display: 'flex',
         alignItems: 'flex-start',

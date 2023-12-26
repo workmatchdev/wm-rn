@@ -1,82 +1,24 @@
-import { View, Text, Image, Platform } from "react-native";
+import { View } from "react-native";
 import styles from "./styles";
-import { useMemo } from "react";
-import RoundedButton from "../../../RoundedButton";
-import { XMarck, CheckMark, MessageIcon } from "../../../../src/assets/icons";
-import colors from "../../../../src/assets/colors";
-import LongTextComponent from "../../../LongTextComponent";
+import CardCompany from "../CardCompany/cardCompany";
+import CardApplicant from "../CardApplicants/cardApplicant";
+import useSession from "../../../../hooks/sessions/useSession";
 
 const Card = ({
     handleCloseModal = null,
     buttonTopRight = () => null,
     cardData
 }) => {
-
-    const isIOS = Platform.OS === 'ios';
-    const { 
-        title,
-        position,
-        description,
-        maximumSalary,
-        minimumSalary,
-        term,
-        company: {
-            image,
-            profile: {
-                bussinesName,
-            }
-        }
-    } = cardData  || {};
-
-    const currentImage = useMemo(() => {
-        if(image?.url !== 'default') return { uri: image.url }
-        return require('../../../../src/img/user.png')
-    }, [image])
-
-    const formattedAmount = (number) => number.toLocaleString('es-MX', {
-        style: 'currency',
-        currency: 'MXN'
-      });
-
-    const salary = {
-        max: formattedAmount(Number(maximumSalary)),
-        min: formattedAmount(Number(minimumSalary))
-    }
-
+    const { isBussiness } = useSession();
     return (
         <View style={styles.scrollViewContainer}>
             <View style={styles.container}>
                 {buttonTopRight()}
-                <Text style={styles.title}>{title}</Text>
-                <Text style={styles.cargo}>Cargo: {position}</Text>
-                <LongTextComponent
-                    style={styles.description}
-                    numberOfLines={isIOS ? 20 : 10}
-                    handleShowMore={() => handleCloseModal(cardData)}
-                    showAll={!handleCloseModal}
-                    text={description}
-                />
-                <View>
-                    <View style={styles.contianerRow}>
-                        <Text style={styles.labelContainer}>Salario:</Text>
-                        <Text style={styles.infoContainer}>{salary.min} - {salary.max}</Text>
-                    </View>
-                    <View style={styles.contianerRow}>
-                        <Text style={styles.labelContainer}>Plazo:</Text>
-                        <Text style={styles.infoContainer}>{term}</Text>
-                    </View>
-                </View>
-                <View style={styles.bussinesContainer}>
-                    <View style={styles.logoContainer}>
-                        <Image
-                            style={styles.logo}
-                            source={currentImage}
-                        />
-                    </View>
-                    <View>
-                        <Text style={styles.bussinesName}>{bussinesName}</Text>
-                    </View>
-                </View>
+                {!isBussiness ? (
+                    <CardCompany handleCloseModal={handleCloseModal} styles={styles} data={cardData} />
+                ) : (
+                    <CardApplicant handleCloseModal={handleCloseModal} styles={styles} data={cardData} />
+                )}
             </View>
         </View>
     );

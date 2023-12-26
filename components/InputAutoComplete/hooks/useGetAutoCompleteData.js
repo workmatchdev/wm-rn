@@ -22,7 +22,7 @@ const useGetAutoCompleteData = () => {
                 resetValues()
                 return
             }
-            const response = await axios.get(`https://work-match-server.vercel.app/api/jobs/skills/${searchQuery}`);
+            const response = await axios.get(`http://192.168.134.1:4000/api/jobs/skills/${searchQuery}`);
             setResult(response.data.skills);
             setLoading(false)
             setError(null)

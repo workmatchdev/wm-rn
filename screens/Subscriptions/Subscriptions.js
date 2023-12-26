@@ -35,7 +35,8 @@ const Subscriptions = () => {
         handleRenewMembership,
         isActiveMembership,
         handleChangeMembership,
-        cancelChangePlan
+        cancelChangePlan,
+        isFreeMembership
     } = useSuscriptions()
 
     const headerHeight = useHeaderHeight()
@@ -85,7 +86,7 @@ const Subscriptions = () => {
                                 </View>
                             </View>
                             {
-                                !hasActivePlan && isActiveMembership && (
+                                !hasActivePlan && isActiveMembership && !isFreeMembership && (
                                     <Button
                                         onPress={cancelChangePlan}
                                         textStyle={styles.submitButtonText}
