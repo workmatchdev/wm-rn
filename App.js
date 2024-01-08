@@ -17,6 +17,7 @@ import Notifications from './screens/Notifications/';
 import UpdateJob from './screens/UpdateJob';
 import Chat from './components/ChatComponent/components/Chat';
 import ChatList from './components/ChatComponent/components/List';
+import ForgotPassword from './screens/ForgotPassword';
 
 import colors from './src/assets/colors';
 import RigthButtons from './components/NavigationBar/components/rigthButtons';
@@ -70,7 +71,7 @@ export default function App() {
         <Stack.Screen
           name='Notifications'
           component={Notifications}
-          options={options( 'Notificaciones')}
+          options={options('Notificaciones')}
           initialParams={{
             seccionName: 'Notificaciones'
           }}
@@ -177,6 +178,14 @@ export default function App() {
           options={options('Chat')}
           initialParams={{
             seccionName: 'Chat'
+          }}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name='ForgotPassword'
+          component={ForgotPassword}
+          initialParams={{
+            seccionName: 'Olvide mi contraseña'
           }}
         />
       </Stack.Navigator>

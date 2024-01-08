@@ -2,6 +2,29 @@ import { StyleSheet } from "react-native";
 import colors from "../../src/assets/colors";
 
 export default StyleSheet.create({
+    principalTitle: {
+        marginTop: 5,
+        marginBottom: 5,
+        paddingVertical: 15
+    },
+    pricipalTitleText: {
+        fontFamily: 'Nunito-Bold',
+        fontSize: 25,
+        textAlign: 'center',
+        marginVertical: 20,
+        color: '#191010',
+        width: '100%',
+        borderBottomWidth: 8,
+        textAlign: 'left',
+        borderColor: colors.principalPink,
+        backgroundColor: '#fff',
+        paddingVertical: 10,
+        paddingHorizontal: 8
+    },
+    container: {
+        padding: 20,
+        flex: 1
+    },
     generalContainer: {
         flex: 1,
         width: '100%',
@@ -11,7 +34,7 @@ export default StyleSheet.create({
     },
     principalContainer: {
         padding: 20,
-        marginBottom: 50
+        marginBottom: 50,
     },
     logoContainer:{
         display: 'flex',
@@ -22,7 +45,8 @@ export default StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 20,
         backgroundColor: '#fff',
-        borderRadius: 5
+        borderRadius: 5,
+        height: '100%'
     },
     input: {
         marginVertical: 0,
@@ -50,7 +74,7 @@ export default StyleSheet.create({
         marginVertical: 12,
         paddingHorizontal: 10,
         borderRadius: 8,
-        backgroundColor: colors.principalPink,
+        backgroundColor: colors.principalColor,
         width: '100%',
         textAlign: 'center',
         display: 'flex',

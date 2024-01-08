@@ -72,6 +72,15 @@ const LoginPage = () => {
                                         underlayColor="rgba(255,255,255,0)"
                                     />
                                 </View>
+                                <View style={styles.askAccontContinar}>
+                                    <Text style={styles.askAccontText}>Olvidaste tu contraseña?</Text>
+                                    <Button
+                                        textStyle={styles.createAccountButtonText}
+                                        title='Cambiar contraseña'
+                                        onPress={() => navigation.navigate('ForgotPassword')}
+                                        underlayColor="rgba(255,255,255,0)"
+                                    />
+                                </View>
                             </View>
                         )}
                     </Formik>
