@@ -61,7 +61,7 @@ const useApplicantsForm = () => {
             setToken(data.token)
             navigation.navigate("Home")
         } catch (error) {
-            alert(error.response.data.msg)
+            alert(error.response.data.msg);
         }
     }
     const handleUploadFile = async (props) => {

@@ -9,6 +9,11 @@ import { Formik } from 'formik';
 import InputSerchMultiSelect from '../../components/InputserchAndAddToList';
 import { getFormattedDate } from '../../helpers/date';
 import Button from '../../components/Button';
+import {
+    AddStudiesSchema,
+    AddexperienceSchema,
+    ValidationSchemaProfileApplicant
+} from '../../tools/schemaValidation';
 
 const UserProfile = () => {
     const {
@@ -44,8 +49,9 @@ const UserProfile = () => {
                                 await handleSubmitUpdate(values, initialValues._id);
                                 actions.setTouched({})
                             }}
+                            validationSchema={ValidationSchemaProfileApplicant}
                         >
-                            {({ handleChange, handleBlur, handleSubmit, handleReset, values, touched }) => {
+                            {({ handleChange, handleBlur, handleSubmit, handleReset, values, touched, errors }) => {
                                 const isBeingEdited = Object.values(touched).length;
                                 return (
                                     <View style={styles.formContainer}>
@@ -57,6 +63,7 @@ const UserProfile = () => {
                                             onChangeText={handleChange('name')}
                                             onBlur={handleBlur('name')}
                                             value={values.name}
+                                            error={errors.name}
                                         />
                                         <InputText
                                             label='Apellido(s)'
@@ -66,6 +73,7 @@ const UserProfile = () => {
                                             onChangeText={handleChange('lastName')}
                                             onBlur={handleBlur('lastName')}
                                             value={values.lastName}
+                                            error={errors.lastName}
                                         />
                                         <Select
                                             label='Genero'
@@ -75,6 +83,7 @@ const UserProfile = () => {
                                             onChange={handleChange('gender')}
                                             onBlur={handleBlur('gender')}
                                             value={values.gender}
+                                            error={errors.gender}
                                         />
                                         <InputText
                                             label='Email'
@@ -84,6 +93,7 @@ const UserProfile = () => {
                                             onChangeText={handleChange('email')}
                                             onBlur={handleBlur('email')}
                                             value={values.email}
+                                            error={errors.email}
                                         />
                                         {/* Aditional data */}
                                         <InputText
@@ -94,6 +104,7 @@ const UserProfile = () => {
                                             label='Direccion'
                                             labelStyles={styles.label}
                                             value={values.address}
+                                            error={errors.address}
                                         />
                                         <InputText
                                             styles={styles.inputContainer}
@@ -103,7 +114,7 @@ const UserProfile = () => {
                                             onChangeText={handleChange('phone')}
                                             onBlur={handleBlur('phone')}
                                             value={values.phone}
-
+                                            error={errors.phone}
                                         />
                                         <InputText
                                             styles={styles.inputContainer}
@@ -114,6 +125,7 @@ const UserProfile = () => {
                                             onChangeText={handleChange('website')}
                                             onBlur={handleBlur('website')}
                                             value={values.website}
+                                            error={errors.website}
                                         />
                                         <InputText
                                             styles={styles.inputContainer}
@@ -123,6 +135,7 @@ const UserProfile = () => {
                                             onChangeText={handleChange('linkedin')}
                                             onBlur={handleBlur('linkedin')}
                                             value={values.linkedin}
+                                            error={errors.linkedin}
                                         />
                                         <InputText
                                             styles={styles.inputContainer}
@@ -134,6 +147,7 @@ const UserProfile = () => {
                                             onChangeText={handleChange('description')}
                                             onBlur={handleBlur('description')}
                                             value={values.description}
+                                            error={errors.description}
                                         />
                                         <TouchableHighlight
                                             onPress={() => {
@@ -200,11 +214,19 @@ const UserProfile = () => {
                             return response
                         }}
                         title={"Experiencia laboral"}
+                        schemaValidation={AddexperienceSchema}
                         fields={[
                             {
                                 label: "Empresa",
                                 type: "text",
                                 name: "company",
+                                validation: null,
+                                defaultValue: ""
+                            },
+                            {
+                                label: "Puesto",
+                                type: "text",
+                                name: "puesto",
                                 validation: null,
                                 defaultValue: ""
                             },
@@ -236,7 +258,7 @@ const UserProfile = () => {
                                 <View key={i} style={styles.experienceContainer}>
                                     <Text
                                         style={styles.skilText}
-                                    >{value.experience?.company}</Text>
+                                    >{value.experience?.company} - {value.experience?.puesto}</Text>
                                     <Text
                                         style={styles.skilText}
                                     >Desde: {value.experience.start}</Text>
@@ -262,19 +284,29 @@ const UserProfile = () => {
                     />
                     <InputSerchMultiSelect
                         title={"Estudios"}
+                        schemaValidation={AddStudiesSchema}
                         handleSubmit={async (values, action) => {
                             if (!values.college || values.college.trim() === '') return null
                             alert('Agregado correctamente')
                             action.resetForm();
+                            action.setFieldValue("start", "");
+                            action.setFieldValue("end", "");
                             const response = await handleAddSkillsInformation({ studies: values }, 'upadateStudies')
                             return response
                         }}
                         items={initialValues.studies}
                         fields={[
                             {
-                                label: "Buscar Institucion",
+                                label: "Institucion",
                                 type: "text",
                                 name: "college",
+                                validation: null,
+                                defaultValue: ""
+                            },
+                            {
+                                label: "Nombre de la carrera o diplomado",
+                                type: "text",
+                                name: "title",
                                 validation: null,
                                 defaultValue: ""
                             },
@@ -305,17 +337,17 @@ const UserProfile = () => {
                                 <View key={i} style={styles.experienceContainer}>
                                     <Text
                                         style={styles.skilText}
-                                    >{value.studies?.college}</Text>
+                                    >{value.studies?.college} - {value.studies?.title}</Text>
                                     <Text
                                         style={styles.skilText}
-                                    >Desde: {value.studies.start}</Text>
+                                    >Fecha de inicio: {value.studies.start}</Text>
                                     {
-                                        value.studies.currentJob ? (
+                                        value.studies.currentCollege ? (
                                             <Text style={styles.skilText}>Estudiando actualmente</Text>
                                         ) : (
                                             <Text
                                                 style={styles.skilText}
-                                            >Hasta: {value.studies.end}</Text>
+                                            >Fecha final: {value.studies.end}</Text>
                                         )
                                     }
                                     <Button

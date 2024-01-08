@@ -9,10 +9,11 @@ import { useMemo } from 'react';
 import colors from '../../src/assets/colors';
 import useInputserchAndAddToList from './hooks/useInputserchAndAddToList';
 import InputAutoComplete from '../InputAutoComplete';
+import Select from '../Select/Select';
 
 const InputSerchMultiSelect = (props) => {
 
-    const { title, fields, items, handleSubmit: handleSubmitForm, listComponent } = props;
+    const { title, fields, items, handleSubmit: handleSubmitForm, listComponent, schemaValidation } = props;
 
     const currentItemsSelected = items ? items : [];
 
@@ -41,8 +42,10 @@ const InputSerchMultiSelect = (props) => {
             <Formik
                 initialValues={initialValues}
                 onSubmit={onSubmit}
+                validationSchema={schemaValidation}
             >
-                {({ handleChange, handleSubmit, setFieldValue, values }) => {
+                {({ handleChange, handleSubmit, setFieldValue, values, errors }) => {
+                    console.log(errors);
                     return (
                         <View style={styles.formContainer}>
                             <View>
@@ -59,6 +62,7 @@ const InputSerchMultiSelect = (props) => {
                                                 onValueChange={setFieldValue}
                                                 handleSubmit={handleSubmit}
                                                 value={values[field.name]}
+                                                error={errors[field.name]}
                                             />
                                         )
                                     }
@@ -72,6 +76,7 @@ const InputSerchMultiSelect = (props) => {
                                                 styles={styles.inputContainer}
                                                 onChangeText={handleChange(field.name)}
                                                 value={values[field.name]}
+                                                error={errors[field.name]}
                                             />
                                         )
                                     }
@@ -85,6 +90,16 @@ const InputSerchMultiSelect = (props) => {
                                                     onChange={handleChange(field.name)}
                                                     value={values[field.name]}
                                                 />
+                                                <Text></Text>
+                                                {errors[field.name] && (
+                                                    <Text
+                                                        style={{
+                                                            color: colors.principalRed,
+                                                            paddingVertical: 5,
+                                                            fontFamily: 'Nunito-Bold'
+                                                        }}
+                                                    >{errors[field.name]}</Text>
+                                                )}
                                             </View>
                                         )
                                     }
@@ -99,6 +114,18 @@ const InputSerchMultiSelect = (props) => {
                                                     onValueChange={() => setFieldValue(field.name, !values[field.name])}
                                                 />
                                             </View>
+                                        )
+                                    }
+                                    if (field.type === 'select') {
+                                        return (
+                                            <Select
+                                                label={field.name}
+                                                items={field.items}
+                                                onChange={handleChange(field.name)}
+                                                onBlur={handleBlur(field.name)}
+                                                value={values[field.name]}
+                                                error={errors[field.name]}
+                                            />
                                         )
                                     }
 

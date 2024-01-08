@@ -6,6 +6,7 @@ import InputList from "../../components/InputList";
 import Layout from "../../components/Layout/Layout";
 import { Formik } from 'formik';
 import useCreateJobs from '../CreateJob/hooks/useCreateJobs';
+import { ValidationSchemaJob } from "../../tools/schemaValidation";
 
 const CreateJob = ({ route }) => {
 
@@ -28,8 +29,9 @@ const CreateJob = ({ route }) => {
                             onSubmit={values => {
                                 handleSubmitUpdate(values)
                             }}
+                            validationSchema={ValidationSchemaJob}
                         >
-                            {({ handleSubmit, handleChange, values, handleBlur }) => (
+                            {({ handleSubmit, handleChange, values, handleBlur, errors }) => (
                                 <View>
                                     <InputText
                                         styles={styles.inputContainer}
@@ -39,6 +41,7 @@ const CreateJob = ({ route }) => {
                                         value={values.title}
                                         onChangeText={handleChange('title')}
                                         onBlur={handleBlur('title')}
+                                        error={errors.title}
                                     />
                                     <InputText
                                         styles={styles.inputContainer}
@@ -48,6 +51,7 @@ const CreateJob = ({ route }) => {
                                         value={values.position}
                                         onChangeText={handleChange('position')}
                                         onBlur={handleBlur('position')}
+                                        error={errors.position}
                                     />
                                     <InputText
                                         styles={styles.inputContainer}
@@ -57,6 +61,7 @@ const CreateJob = ({ route }) => {
                                         value={values.term}
                                         onChangeText={handleChange('term')}
                                         onBlur={handleBlur('term')}
+                                        error={errors.term}
                                     />
                                     <InputText
                                         styles={styles.inputContainer}
@@ -66,6 +71,7 @@ const CreateJob = ({ route }) => {
                                         value={values.limitMatches}
                                         onChangeText={handleChange('limitMatches')}
                                         onBlur={handleBlur('limitMatches')}
+                                        error={errors.limitMatches}
                                     />
                                     <View style={styles.salaryContainer}>
                                         <Text style={styles.salaryLabel}>Rango de salario</Text>
@@ -73,18 +79,20 @@ const CreateJob = ({ route }) => {
                                             <InputText
                                                 styles={styles.salaryContinerInput}
                                                 inputStyles={styles.input}
-                                                placeholder='Max'
-                                                value={values.maximumSalary}
-                                                onChangeText={handleChange('maximumSalary')}
-                                                onBlur={handleBlur('maximumSalary')}
-                                            />
-                                            <InputText
-                                                styles={styles.salaryContinerInput}
-                                                inputStyles={styles.input}
                                                 placeholder='Min'
                                                 value={values.minimumSalary}
                                                 onChangeText={handleChange('minimumSalary')}
                                                 onBlur={handleBlur('minimumSalary')}
+                                                error={errors.minimumSalary}
+                                            />
+                                            <InputText
+                                                styles={styles.salaryContinerInput}
+                                                inputStyles={styles.input}
+                                                placeholder='Max'
+                                                value={values.maximumSalary}
+                                                onChangeText={handleChange('maximumSalary')}
+                                                onBlur={handleBlur('maximumSalary')}
+                                                error={errors.maximumSalary}
                                             />
                                         </View>
                                     </View>
@@ -98,6 +106,7 @@ const CreateJob = ({ route }) => {
                                         value={values.description}
                                         onChangeText={handleChange('description')}
                                         onBlur={handleBlur('description')}
+                                        error={errors.description}
                                     />
                                     <Text style={styles.label}>Keywords</Text>
                                     <InputList

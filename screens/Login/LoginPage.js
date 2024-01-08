@@ -7,9 +7,11 @@ import useLogin from '../../hooks/sessions/useLogin';
 import { Formik } from 'formik';
 import { useLayoutEffect } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { LoginSchema } from '../../tools/schemaValidation';
+import ErrorForm from '../../components/ErrorFrom/errorForm';
 
 const LoginPage = () => {
-    const { handleLogin } = useLogin();
+    const { handleLogin, error } = useLogin();
 
     const navigation = useNavigation();
     const route = useRoute();
@@ -37,8 +39,9 @@ const LoginPage = () => {
                         onSubmit={values => {
                             handleLogin(values)
                         }}
+                        validationSchema={LoginSchema}
                     >
-                        {({ handleSubmit, handleChange, values }) => (
+                        {({ handleSubmit, handleChange, values, errors }) => (
                             <View style={styles.formContainer}>
                                 <InputText
                                     label='Correo'
@@ -46,6 +49,7 @@ const LoginPage = () => {
                                     labelStyles={styles.label}
                                     styles={styles.inputContainer}
                                     onChangeText={handleChange('email')}
+                                    error={errors.email}
                                 />
                                 <InputText
                                     label='Password'
@@ -55,7 +59,9 @@ const LoginPage = () => {
                                     password
                                     onChangeText={handleChange('password')}
                                     value={values.password}
+                                    error={errors.password}
                                 />
+                                <ErrorForm error={error} />
                                 <Button
                                     underlayColor="rgba(255,255,255,0)"
                                     styles={styles.submitButton}

@@ -7,7 +7,7 @@ import styles from './styles';
 import InputFile from '../../components/InputFile';
 import { Formik } from 'formik';
 import useApplicantsForm from '../../components/Forms/ApplicantForms/hooks/useApplicantsForm';
-
+import { ValidationSchemaProfileCompany } from '../../tools/schemaValidation';
 
 const BussinesProfile = () => {
     const { initialValues, handleSubmitUpdate, handleUploadFile, sectores } = useApplicantsForm();
@@ -37,8 +37,9 @@ const BussinesProfile = () => {
                                     await handleSubmitUpdate(values, initialValues._id)
                                     actions.setTouched({})
                                 }}
+                                validationSchema={ValidationSchemaProfileCompany}
                             >
-                                {({ handleChange, handleBlur, handleSubmit, handleReset, values, touched }) => {
+                                {({ handleChange, handleBlur, handleSubmit, handleReset, values, touched, errors }) => {
                                     const isBeingEdited = Object.values(touched).length;
                                     return (
                                         <>
@@ -50,6 +51,7 @@ const BussinesProfile = () => {
                                                 value={values.name}
                                                 onChangeText={handleChange('name')}
                                                 onBlur={handleBlur('name')}
+                                                error={errors.name}
                                             />
                                             <InputText
                                                 styles={styles.inputContainer}
@@ -59,6 +61,7 @@ const BussinesProfile = () => {
                                                 value={values.lastName}
                                                 onChangeText={handleChange('lastName')}
                                                 onBlur={handleBlur('lastName')}
+                                                error={errors.lastName}
                                             />
                                             <InputText
                                                 styles={styles.inputContainer}
@@ -68,6 +71,7 @@ const BussinesProfile = () => {
                                                 value={values.bussinesName}
                                                 onChangeText={handleChange('bussinesName')}
                                                 onBlur={handleBlur('bussinesName')}
+                                                error={errors.bussinesName}
                                             />
                                             <InputText
                                                 styles={styles.inputContainer}
@@ -77,6 +81,7 @@ const BussinesProfile = () => {
                                                 value={values.address}
                                                 onChangeText={handleChange('address')}
                                                 onBlur={handleBlur('address')}
+                                                error={errors.address}
                                             />
                                             <InputText
                                                 styles={styles.inputContainer}
@@ -86,6 +91,7 @@ const BussinesProfile = () => {
                                                 onChangeText={handleChange('phone')}
                                                 onBlur={handleBlur('phone')}
                                                 value={values.phone}
+                                                error={errors.phone}
                                             />
                                             <InputText
                                                 styles={styles.inputContainer}
@@ -96,6 +102,7 @@ const BussinesProfile = () => {
                                                 value={values.email}
                                                 onChangeText={handleChange('email')}
                                                 onBlur={handleBlur('email')}
+                                                error={errors.email}
                                             />
                                             <InputText
                                                 styles={styles.inputContainer}
@@ -106,6 +113,7 @@ const BussinesProfile = () => {
                                                 value={values.website}
                                                 onChangeText={handleChange('website')}
                                                 onBlur={handleBlur('website')}
+                                                error={errors.website}
                                             />
                                             <View style={styles.doubleContainer}>
                                                 <Text style={styles.doubleLabel}>Numero de empleado</Text>
@@ -117,6 +125,7 @@ const BussinesProfile = () => {
                                                         value={values.employesNumberMax}
                                                         onChangeText={handleChange('employesNumberMax')}
                                                         onBlur={handleBlur('employesNumberMax')}
+                                                        error={errors.employesNumberMax}
                                                     />
                                                     <InputText
                                                         styles={styles.doubleContinerInput}
@@ -125,6 +134,7 @@ const BussinesProfile = () => {
                                                         value={values.employesNumberMin}
                                                         onChangeText={handleChange('employesNumberMin')}
                                                         onBlur={handleBlur('employesNumberMin')}
+                                                        error={errors.employesNumberMin}
                                                     />
                                                 </View>
                                             </View>
@@ -136,6 +146,7 @@ const BussinesProfile = () => {
                                                 value={values.facebook}
                                                 onChangeText={handleChange('facebook')}
                                                 onBlur={handleBlur('facebook')}
+                                                error={errors.facebook}
                                             />
                                             <InputText
                                                 styles={styles.inputContainer}
@@ -145,6 +156,7 @@ const BussinesProfile = () => {
                                                 value={values.twitter}
                                                 onChangeText={handleChange('twitter')}
                                                 onBlur={handleBlur('twitter')}
+                                                error={errors.twitter}
                                             />
                                             <InputText
                                                 styles={styles.inputContainer}
@@ -154,6 +166,7 @@ const BussinesProfile = () => {
                                                 value={values.instagram}
                                                 onChangeText={handleChange('instagram')}
                                                 onBlur={handleBlur('instagram')}
+                                                error={errors.instagram}
                                             />
                                             <InputText
                                                 styles={styles.inputContainer}
@@ -163,6 +176,7 @@ const BussinesProfile = () => {
                                                 value={values.linkedin}
                                                 onChangeText={handleChange('linkedin')}
                                                 onBlur={handleBlur('linkedin')}
+                                                error={errors.linkedin}
                                             />
                                             <Select
                                                 label='Sector'
@@ -172,6 +186,7 @@ const BussinesProfile = () => {
                                                 value={values.sector}
                                                 onChange={handleChange('sector')}
                                                 onBlur={handleBlur('sector')}
+                                                error={errors.sector}
                                             />
                                             <InputText
                                                 styles={styles.inputContainer}
@@ -183,6 +198,7 @@ const BussinesProfile = () => {
                                                 value={values.description}
                                                 onChangeText={handleChange('description')}
                                                 onBlur={handleBlur('description')}
+                                                error={errors.description}
                                             />
                                             <Button
                                                 textStyle={styles.submitButtonText}

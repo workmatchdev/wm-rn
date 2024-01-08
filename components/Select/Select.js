@@ -1,5 +1,6 @@
 import { View, Text } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
+import colors from '../../src/assets/colors';
 
 const Select = (props) => {
     const {
@@ -9,9 +10,10 @@ const Select = (props) => {
         labelStyles = {},
         defaultButtonText = "--Selecciona",
         onChange,
-        value
+        value,
+        error
     } = props;
-    
+
     return (
         <View>
             <Text style={labelStyles}>{label}</Text>
@@ -34,6 +36,13 @@ const Select = (props) => {
                     return item
                 }}
             />
+            {error ? <Text
+                style={{
+                    color: colors.principalRed,
+                    paddingVertical: 5,
+                    fontFamily: 'Nunito-Bold'
+                }}
+            >{error}</Text> : null}
         </View>
     );
 }
