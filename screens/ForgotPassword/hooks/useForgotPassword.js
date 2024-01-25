@@ -9,7 +9,7 @@ const useForgotPassword = () => {
 
     const handleChangePassword = async (values) => {
         try {
-            await axios.post('http://192.168.134.1:4000/api/changePassword/changePassword', {...values, id: userId});
+            await axios.post('https://workmatch-server-0c86658d19cb.herokuapp.com/api/changePassword/changePassword', {...values, id: userId});
             setStep(3)
         } catch (error) {
             alert(error.response.data.message)
@@ -18,7 +18,7 @@ const useForgotPassword = () => {
 
     const handleValidateCode = async (values) => {
         try {
-            const response = await axios.post('http://192.168.134.1:4000/api/changePassword/validateCode', { ...values, email });
+            const response = await axios.post('https://workmatch-server-0c86658d19cb.herokuapp.com/api/changePassword/validateCode', { ...values, email });
             const data = response.data;
             alert(data.message);
             setStep(2)
@@ -29,7 +29,7 @@ const useForgotPassword = () => {
 
     const handleValidateEmail = async (values) => {
         try {
-            const response = await axios.post('http://192.168.134.1:4000/api/changePassword/validateEmail', { ...values });
+            const response = await axios.post('https://workmatch-server-0c86658d19cb.herokuapp.com/api/changePassword/validateEmail', { ...values });
             const data = response.data;
             setEmail(data.user.email);
             setUserId(data.user._id);
@@ -42,7 +42,7 @@ const useForgotPassword = () => {
 
     const resendEmail = async (values) => {
         try {
-            const response = await axios.post('http://192.168.134.1:4000/api/changePassword/changePassword', values);
+            const response = await axios.post('https://workmatch-server-0c86658d19cb.herokuapp.com/api/changePassword/changePassword', values);
             const data = response.data;
         } catch (error) {
             alert('Ha ocurrido un error al reenviar el codigo');

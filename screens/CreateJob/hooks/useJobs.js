@@ -10,7 +10,7 @@ const useJobs = () => {
 
     useEffect(() => {
         const getJobs = async () => {
-            const response = await axios.get(`http://192.168.134.1:4000/api/jobs/${user._id}`);
+            const response = await axios.get(`https://workmatch-server-0c86658d19cb.herokuapp.com/api/jobs/${user._id}`);
             const data = response.data;
             setJobs(data);
         }

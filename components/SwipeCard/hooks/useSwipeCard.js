@@ -33,7 +33,7 @@ const useSwipeCard = ({
                 if (isBussiness) {
                     body.jobId = currentJob;
                 }
-                const response = await axios.post(`http://192.168.134.1:4000/api${url}`, body);
+                const response = await axios.post(`https://workmatch-server-0c86658d19cb.herokuapp.com/api${url}`, body);
                 setlistJobsMatch(response.data.data);
                 setGetCards(false);
             } catch (error) {
@@ -55,7 +55,7 @@ const useSwipeCard = ({
             body.job = card._id
             body.user = user._id;
         }
-        axios.post(`http://192.168.134.1:4000/api/matchs/create`, body)
+        axios.post(`https://workmatch-server-0c86658d19cb.herokuapp.com/api/matchs/create`, body)
             .then((response) => {
                 setOpenNewModal(response.data.newMatch);
             })
@@ -65,7 +65,7 @@ const useSwipeCard = ({
     };
 
     const handleNope = (card) => {
-        axios.post(`http://192.168.134.1:4000/api/matchs/discartJob`, {
+        axios.post(`https://workmatch-server-0c86658d19cb.herokuapp.com/api/matchs/discartJob`, {
             job: card._id,
             user: user._id
         })

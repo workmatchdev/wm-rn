@@ -17,7 +17,7 @@ const useChat = () => {
 
     useEffect(() => {
         socket.on('message', (msg) => {
-            if (router.params.chatId === msg.chatId) {
+            if (router.params.chatId === msg.chat) {
                 setMessages([...messages, msg])
             }
         });
@@ -29,7 +29,7 @@ const useChat = () => {
     useEffect(() => {
         const getChats = async () => {
             try {
-                const response = await axios.get(`http://192.168.134.1:4000/api/chats/getMessages/${router.params.chatId}`);
+                const response = await axios.get(`https://workmatch-server-0c86658d19cb.herokuapp.com/api/chats/getMessages/${router.params.chatId}`);
                 const data = response.data;
                 setMessages(data.data)
                 setLoading(false);
@@ -55,7 +55,7 @@ const useChat = () => {
                 "sender": user._id
             }
 
-            const response = await axios.post('http://192.168.134.1:4000/api/chats/sendMessage', newMessage);
+            const response = await axios.post('https://workmatch-server-0c86658d19cb.herokuapp.com/api/chats/sendMessage', newMessage);
             setMessages([...messages, response.data.data])
         } catch (error) {
             alert('Ha ocurrido un error')

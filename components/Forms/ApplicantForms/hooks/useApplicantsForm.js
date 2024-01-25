@@ -55,7 +55,7 @@ const useApplicantsForm = () => {
 
     const handleSubmit = async (values) => {
         try {
-            const response = await axios.post('http://192.168.134.1:4000/api/applicants/create', values);
+            const response = await axios.post('https://workmatch-server-0c86658d19cb.herokuapp.com/api/applicants/create', values);
             const data = response.data;
             setUser(data.user)
             setToken(data.token)
@@ -66,7 +66,7 @@ const useApplicantsForm = () => {
     }
     const handleUploadFile = async (props) => {
         try {
-            const response = await axios.post(`http://192.168.134.1:4000/api/applicants/uploadImage`, {
+            const response = await axios.post(`https://workmatch-server-0c86658d19cb.herokuapp.com/api/applicants/uploadImage`, {
                 userId: user._id,
                 image: props.base64,
             });
@@ -126,7 +126,7 @@ const useApplicantsForm = () => {
                 profile
             }
 
-            const response = await axios.put(`http://192.168.134.1:4000/api/applicants/update/${id}`, data);
+            const response = await axios.put(`https://workmatch-server-0c86658d19cb.herokuapp.com/api/applicants/update/${id}`, data);
             const newValues = response.data;
             setUser(newValues.user)
             alert(newValues.msg)
@@ -142,7 +142,7 @@ const useApplicantsForm = () => {
     const handleUpdateSkills = async (skill) => {
         try {
             const data = { skill }
-            const response = await axios.put(`http://192.168.134.1:4000/api/applicants/update/${id}`, data);
+            const response = await axios.put(`https://workmatch-server-0c86658d19cb.herokuapp.com/api/applicants/update/${id}`, data);
             return response.data;
         } catch (error) {
             if (error?.response?.data?.msg) {
@@ -155,7 +155,7 @@ const useApplicantsForm = () => {
 
     const handleAddSkillsInformation = async (values, route) => {
         try {
-            const response = await axios.put(`http://192.168.134.1:4000/api/applicants/${route}/${user._id}`, values);
+            const response = await axios.put(`https://workmatch-server-0c86658d19cb.herokuapp.com/api/applicants/${route}/${user._id}`, values);
             const data = response.data;
             return data.newSkill
         } catch (error) {
@@ -169,7 +169,7 @@ const useApplicantsForm = () => {
                 ...values,
                 userId: user._id
             }
-            await fetch(`http://192.168.134.1:4000/api/applicants/${route}/${info.userId}/${info.skillId}`, { method: 'delete' });
+            await fetch(`https://workmatch-server-0c86658d19cb.herokuapp.com/api/applicants/${route}/${info.userId}/${info.skillId}`, { method: 'delete' });
             if (callback) callback()
         } catch (error) {
             console.log('error', error);
@@ -179,7 +179,7 @@ const useApplicantsForm = () => {
 
     const handleDeleteItem = async (id) => {
         try {
-            await axios.delete(`http://192.168.134.1:4000/api/applicants/delete/${id}`);
+            await axios.delete(`https://workmatch-server-0c86658d19cb.herokuapp.com/api/applicants/delete/${id}`);
             // deleteRol(id)
         } catch (error) {
             alert('Ha ocurrido un error al eliminar el rol')

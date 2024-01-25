@@ -15,7 +15,8 @@ export default StyleSheet.create({
         paddingHorizontal: 10,
         marginBottom: 6,
         borderRadius: 5,
-        minHeight: 80
+        minHeight: 80,
+        position: 'relative'
     },
     notificationtext: {
         fontFamily: 'Nunito-SemiBold',
@@ -25,5 +26,10 @@ export default StyleSheet.create({
     },
     iconContainer: {
         width: '10%'
+    },
+    date: {
+        position: 'absolute',
+        bottom: 5,
+        right: 5
     }
 })

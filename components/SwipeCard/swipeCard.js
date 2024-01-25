@@ -29,7 +29,6 @@ const SwipeCard = ({ currentJob }) => {
         if (!isOpen) setCurrentCard(cardData)
         setIsOpen(!isOpen)
     }
-
     const buttonClose = () => {
         return (
             <TouchableHighlight

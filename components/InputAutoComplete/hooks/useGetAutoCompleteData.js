@@ -22,7 +22,7 @@ const useGetAutoCompleteData = () => {
                 resetValues()
                 return
             }
-            const response = await axios.get(`http://192.168.134.1:4000/api/jobs/skills/${searchQuery}`);
+            const response = await axios.get(`https://workmatch-server-0c86658d19cb.herokuapp.com/api/jobs/skills/${searchQuery}`);
             setResult(response.data.skills);
             setLoading(false)
             setError(null)

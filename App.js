@@ -22,7 +22,7 @@ import ForgotPassword from './screens/ForgotPassword';
 import colors from './src/assets/colors';
 import RigthButtons from './components/NavigationBar/components/rigthButtons';
 import LeftButtons from './components/NavigationBar/components/leftButton';
-
+import ValidateNotifications from './screens/Notifications/ValidateNotifications';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -39,6 +39,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
+      <ValidateNotifications />
       <Stack.Navigator
         screenOptions={{
           headerTitleAlign: 'center',

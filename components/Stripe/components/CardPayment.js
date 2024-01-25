@@ -17,7 +17,7 @@ export default CardPayment = ({ onCancel, onSuccess, data }) => {
 
     const fetchPaymentIntentClientSecret = async () => {
         try {
-            const response = await axios.post('http://192.168.134.1:4000/api/activeMemberships/payment-intent-stripe', {
+            const response = await axios.post('https://workmatch-server-0c86658d19cb.herokuapp.com/api/activeMemberships/payment-intent-stripe', {
                 currency: 'mxn',
                 amount: 1000,
                 membershipId: data._id,
@@ -50,7 +50,7 @@ export default CardPayment = ({ onCancel, onSuccess, data }) => {
             if (error) {
                 setErrors('Ha ocurrido un error al intentar realizar el pago \n Porfavor intentelo mas tarde.')
             } else if (paymentIntent) {
-                const generateNewMemberShip = await axios.post('http://192.168.134.1:4000/api/activeMemberships/activate', {
+                const generateNewMemberShip = await axios.post('https://workmatch-server-0c86658d19cb.herokuapp.com/api/activeMemberships/activate', {
                     userId: user._id,
                     membershipId: data._id, 
                 })
