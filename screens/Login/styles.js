@@ -41,7 +41,7 @@ export default StyleSheet.create({
     },
     label: {
         marginBottom: 2,
-        color: '#B0B0B0',
+        color: '#6A6A6A',
         fontSize: 15,
         fontFamily: 'Nunito-Bold',
     },
@@ -78,20 +78,30 @@ export default StyleSheet.create({
     createAccountButtonText:{
         fontSize: 17,
         fontFamily: 'Nunito-Bold',
-        textDecorationLine: "underline",
         textDecorationStyle: "double",
         textDecorationColor: "#000",
         color: colors.secondarypalColor,
-        marginTop: 5
+        marginTop: 5,
+        width: '100%',
+        textAlign: 'center',
+        padding: 10,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 2,
+        borderColor: colors.principalColor,
+        borderRadius: 5
     },
     askAccontText:{
         fontSize: 18,
         fontFamily: 'Nunito-Bold',
-        marginTop: 5
+        marginTop: 5,
+        textAlign: 'center'
     },
     askAccontContinar:{
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'start',
+        width: '100%',
     }
 })

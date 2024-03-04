@@ -1,6 +1,6 @@
 {
   "name": "Workmatch",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -20,6 +20,7 @@
     "axios": "^1.5.1",
     "dayjs": "^1.11.10",
     "expo": "^49.0.18",
+    "expo-dev-client": "~2.4.13",
     "formik": "^2.4.5",
     "jsesc": "^3.0.2",
     "mime": "^3.0.0",

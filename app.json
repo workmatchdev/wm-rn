@@ -6,7 +6,7 @@
     "icon": "./assets/images/icon.png",
     "extra": {
       "eas": {
-        "projectId": "59ff3c19-e89f-478d-89e3-55529fb74d44"
+        "projectId": "530107ae-c89e-40ac-bc15-667be966bca5"
       }
     },
     "plugins": [
@@ -18,8 +18,8 @@
         }
       ]
     ],
-    "owner": "josepalmz19",
-    "slug": "workmatchdev",
+    "owner": "workmatchprod",
+    "slug": "workmatch",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",

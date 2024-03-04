@@ -27,7 +27,7 @@ const ForgotPassword = () => {
     }
 
     return (
-        <Layout>
+        <View>
             <ScrollView>
                 <View
                     style={{
@@ -51,7 +51,7 @@ const ForgotPassword = () => {
                 </View>
                 {componentStep}
             </ScrollView>
-        </Layout>
+        </View>
     );
 }
 

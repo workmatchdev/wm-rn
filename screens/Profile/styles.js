@@ -41,7 +41,7 @@ export default StyleSheet.create({
     },
     label: {
         marginBottom: 2,
-        color: '#B0B0B0',
+        color: '#6A6A6A',
         fontSize: 15,
         fontFamily: 'Nunito-Bold',
     },
@@ -51,7 +51,7 @@ export default StyleSheet.create({
         backgroundColor:'#fff'
     },
     gender: {
-        height: 40,
+        height: 48,
         padding: 1,
         marginBottom: 12,
         borderRadius: 5,
@@ -123,7 +123,7 @@ export default StyleSheet.create({
     },
     doubleLabel: {
         marginBottom: 10,
-        color: '#B0B0B0',
+        color: '#6A6A6A',
         fontSize: 17,
         fontFamily: 'Nunito-Bold',
     },
@@ -194,7 +194,7 @@ export default StyleSheet.create({
     },
     uploadPictureLabel: {
         marginVertical: 10,
-        color: '#B0B0B0',
+        color: '#6A6A6A',
         fontSize: 15,
         fontFamily: 'Nunito-Bold',
     }

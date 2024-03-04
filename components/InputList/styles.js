@@ -23,7 +23,7 @@ export default StyleSheet.create({
     },
     label: {
         marginBottom: 2,
-        color: '#B0B0B0',
+        color: '#6A6A6A',
         fontSize: 17,
         fontFamily: 'Nunito-Bold',
     },

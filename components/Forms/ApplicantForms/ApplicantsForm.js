@@ -82,7 +82,6 @@ const ApplicantsForms = (props) => {
                             inputStyles={styles.input}
                             labelStyles={styles.label}
                             styles={styles.inputContainer}
-                            placeholder="Nombre de la empresa"
                             onChangeText={handleChange('bussinesName')}
                             onBlur={handleBlur('bussinesName')}
                             value={values.bussinesName}

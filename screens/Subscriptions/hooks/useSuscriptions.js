@@ -63,7 +63,7 @@ const useSuscriptions = () => {
     useEffect(() => {
         const getUsers = async () => {
             try {
-                const response = await axios.get('https://work-match-server.vercel.app/api/memberships/');
+                const response = await axios.get('https://workmatch-server-0c86658d19cb.herokuapp.com/api/auth/user/auth/app');
                 const membershipsdata = response.data;
                 const filterMemberships = membershipsdata.filter(membership => !membership.name.includes('free'));
                 setMemberships(filterMemberships)

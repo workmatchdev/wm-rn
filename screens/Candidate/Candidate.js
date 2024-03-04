@@ -18,7 +18,6 @@ const Candidate = () => {
                             />
                         </View>
                         <View style={styles.infoContainer}>
-                            <Text style={styles.semiboldText}>Jose Alberto Ortega Almazan</Text>
                             <Text style={styles.ligthText}>Web Developer</Text>
                             <Text style={styles.ligthText}>Postulacion: Vacante numero 1</Text>
                             <View style={styles['match']}>
